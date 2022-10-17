@@ -8,7 +8,7 @@ let project = Project.dynamicFramework(
         .Realm,
         .Moya,
         .Loaf,
-        .Kingfisher,
+        .Kingfisher
     ],
     deploymentTarget: .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
     dependencies: [
@@ -18,6 +18,6 @@ let project = Project.dynamicFramework(
         .SPM.RxCocoa,
         .SPM.RxMoya,
         .SPM.Loaf,
-        .SPM.Kingfisher,
+        .SPM.Kingfisher
     ]
 )

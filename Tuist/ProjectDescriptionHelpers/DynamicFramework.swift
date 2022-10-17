@@ -24,7 +24,7 @@ extension Project {
                     deploymentTarget: deploymentTarget,
                     infoPlist: infoPlist,
                     sources: ["Sources/**"],
-                    scripts: [.swiftlint],
+                    scripts: [.swiftLintScript],
                     dependencies: dependencies
                 )
             ]
