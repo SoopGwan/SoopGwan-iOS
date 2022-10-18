@@ -10,7 +10,7 @@ let project = Project.dynamicFramework(
         .Loaf,
         .Kingfisher
     ],
-    deploymentTarget: .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
+    deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone, .ipad]),
     dependencies: [
         .SPM.RxSwift,
         .SPM.Realm,
