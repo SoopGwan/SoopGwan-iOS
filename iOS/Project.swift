@@ -2,8 +2,8 @@ import ProjectDescriptionHelpers
 import ProjectDescription
 
 let project = Project.excutable(
-    name: "iOS",
+    name: "SoopGwan",
     platform: .iOS,
-    deploymentTarget: .iOS(targetVersion: "14.0", devices: [.iphone, .ipad]),
+    deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone, .ipad]),
     dependencies: []
 )
