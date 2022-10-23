@@ -4,7 +4,7 @@ import SwiftUI
 struct SoopGwanApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginScreen()
+            SignInView()
         }
     }
 }
