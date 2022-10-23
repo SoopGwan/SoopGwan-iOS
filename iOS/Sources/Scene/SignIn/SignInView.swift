@@ -64,6 +64,7 @@ struct SignInView: View {
             .padding(.horizontal, 24)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .hideKeyboard()
     }
 }
 

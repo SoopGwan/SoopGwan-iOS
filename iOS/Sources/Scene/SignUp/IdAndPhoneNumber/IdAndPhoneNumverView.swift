@@ -32,6 +32,7 @@ struct IdAndPhoneNumverView: View {
         }
         .padding(.horizontal, 24)
         .setBackbutton()
+        .hideKeyboard()
         .navigationBarTitleDisplayMode(.inline)
     }
 }

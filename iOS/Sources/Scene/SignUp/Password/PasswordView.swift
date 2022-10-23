@@ -26,6 +26,7 @@ struct PasswordView: View {
         }
         .padding(.horizontal, 24)
         .setBackbutton()
+        .hideKeyboard()
         .navigationBarTitleDisplayMode(.inline)
     }
 }
