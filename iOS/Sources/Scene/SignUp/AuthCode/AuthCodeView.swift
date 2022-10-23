@@ -16,7 +16,8 @@ struct AuthCodeView: View {
                 Text("입력하신 전화번호로\n인증번호가 전송되었습니다.")
                     .font(.system(size: 16, weight: .semibold))
             }
-            .padding(.bottom, 95)
+            Spacer()
+                .frame(minHeight: 30, idealHeight: 95, maxHeight: 95)
             OTPView(text: $authCode)
                 .padding(.bottom, 87)
             HStack {
@@ -41,6 +42,7 @@ struct AuthCodeView: View {
             }
         }
         .setBackbutton()
+        .hideKeyboard()
         .padding(.horizontal, 24)
     }
 }
