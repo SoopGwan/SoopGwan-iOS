@@ -79,6 +79,6 @@ extension HabitAPI: SoopGwanAPI {
     }
     
     public var jwtTokenType: JwtTokenType {
-        return .refreshToken
+        return .accessToken
     }
 }
