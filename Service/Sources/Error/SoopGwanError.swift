@@ -6,5 +6,6 @@ public enum SoopGwanError: Error {
     case unauthorized
     case notFound
     case conflict
+    case toManyRequests
     case serverError
 }
