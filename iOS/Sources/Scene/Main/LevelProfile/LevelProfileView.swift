@@ -18,7 +18,7 @@ struct LevelProfileView: View {
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.gray)
             }
-            .frame(width: .infinity, height: 340)
+            .frame(width: .infinity, height: 300)
             Spacer()
         }
         .overlay {
