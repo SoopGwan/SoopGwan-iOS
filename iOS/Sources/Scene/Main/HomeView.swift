@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MainView: View {
+struct HomeView: View {
     var body: some View {
         VStack(
             alignment: .leading,
@@ -41,6 +41,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        HomeView()
     }
 }

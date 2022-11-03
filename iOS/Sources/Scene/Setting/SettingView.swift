@@ -32,16 +32,16 @@ struct SettingView: View {
                     }
 
                     SettingButton(title: "비밀번호 변경하기") {
-                        MainView()
+                        HomeView()
                     }
                     SettingButton(title: "오픈소스 라이센스") {
-                        MainView()
+                        HomeView()
                     }
                     SettingButton(title: "개발자 소개") {
-                        MainView()
+                        HomeView()
                     }
                     SettingButton(title: "로그아웃", color: .red) {
-                        MainView()
+                        HomeView()
                     }
                     Spacer()
 
