@@ -30,7 +30,7 @@ struct SettingButton<Destination>: View where Destination: View {
                 .frame(height: 50)
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(.gray, lineWidth: 1)
+                        .strokeBorder(.gray, lineWidth: 1)
                 }
             }
     }
