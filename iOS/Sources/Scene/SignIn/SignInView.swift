@@ -51,7 +51,7 @@ struct SignInView: View {
                         .font(.system(size: 12, weight: .regular))
                         .foregroundColor(.gray)
                     NavigationLink {
-                        IdAndPhoneNumverView()
+                        IDAndPhoneNumBerView()
                     } label: {
                         Text("회원가입")
                             .font(.system(size: 12, weight: .regular))

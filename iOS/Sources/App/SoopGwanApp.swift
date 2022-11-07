@@ -4,8 +4,8 @@ import SwiftUI
 struct SoopGwanApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView(
-                mainView: MainView(),
+            TabbarView(
+                mainView: HomeView(),
                 achievementView: AchievementView(),
                 archiveView: ArchiveView(),
                 settingView: SettingView()
