@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct IdAndPhoneNumverView: View {
+struct IDAndPhoneNumBerView: View {
     @State var id: String = ""
     @State var phoneNumber: String = ""
 
@@ -39,6 +39,6 @@ struct IdAndPhoneNumverView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        IdAndPhoneNumverView()
+        IDAndPhoneNumBerView()
     }
 }

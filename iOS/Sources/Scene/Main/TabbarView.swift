@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct HomeView: View {
-    let mainView: MainView
+struct TabbarView: View {
+    let mainView: HomeView
     let achievementView: AchievementView
     let archiveView: ArchiveView
     let settingView: SettingView
@@ -55,8 +55,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(
-            mainView: MainView(),
+        TabbarView(
+            mainView: HomeView(),
             achievementView: AchievementView(),
             archiveView: ArchiveView(),
             settingView: SettingView()

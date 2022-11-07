@@ -4,7 +4,7 @@ import Moya
 public enum HabitAPI {
     case createHabit(content: CreateHabitRequestDTO)
     case deleteHabit(id: Int)
-    case fetchHabitToWeek(startAt: String, endAt: String)
+    case fetchHabitToWeek
     case checkHabitIsSucceed(id: String)
     case fetchAllHabit
     case checkHabitToWeek(content: CheckHabitToWeekRequestDTO)
@@ -66,11 +66,6 @@ extension HabitAPI: SoopGwanAPI {
         switch self {
         case let .createHabit(content):
             return .requestJSONEncodable(content)
-        case let .fetchHabitToWeek(startAt, endAt):
-            return .requestParameters(parameters: [
-                "start_at": startAt,
-                "end_at": endAt
-            ], encoding: URLEncoding.queryString)
         case let .checkHabitToWeek(content):
             return .requestJSONEncodable(content)
         default:
