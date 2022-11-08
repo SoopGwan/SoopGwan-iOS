@@ -1,10 +1,10 @@
 import Foundation
 
 struct FetchHabitToWeekResponseDTO: Codable {
-    let habits: [SingleHomeHabitDTO]
+    let habits: [WeekHabitDTO]
 }
 
-struct SingleHomeHabitDTO: Codable {
+struct WeekHabitDTO: Codable {
     let id: Int
     let title: String
     let successStatus: Bool

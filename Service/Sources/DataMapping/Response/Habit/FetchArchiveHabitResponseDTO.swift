@@ -1,10 +1,10 @@
 import Foundation
 
-struct FetchArciveHabitResponseDTO: Codable {
-    let habits: [SingleArciveHabitDTO]
+struct FetchArchiveHabitResponseDTO: Codable {
+    let habits: [ArciveHabitDTO]
 }
 
-struct SingleArciveHabitDTO: Codable {
+struct ArciveHabitDTO: Codable {
     let id: Int
     let startAt, endAt: String
     let level: Int
