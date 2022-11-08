@@ -20,7 +20,7 @@ open class BaseViewModel: ObservableObject {
             .sink(receiveCompletion: { [weak self] completion in
                 if case let .failure(error) = completion {
                     if let onReceiveError {
-                        onReceiveError(error.self)
+                        onReceiveError(error.asSoopGwanError)
                     }
 
                     self?.errorMessage = error.localizedDescription
