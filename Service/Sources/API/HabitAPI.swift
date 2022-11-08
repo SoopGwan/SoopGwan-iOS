@@ -2,19 +2,19 @@ import Foundation
 import Moya
 
 public enum HabitAPI {
-    case createHabit(content: CreateHabitRequestDTO)
+    case createHabit(req: CreateHabitRequestDTO)
     case deleteHabit(id: Int)
     case fetchHabitToWeek
     case checkHabitIsSucceed(id: String)
     case fetchAllHabit
-    case checkHabitToWeek(content: CheckHabitToWeekRequestDTO)
+    case checkHabitToWeek(req: CheckHabitToWeekRequestDTO)
 }
 
 extension HabitAPI: SoopGwanAPI {
     public var domain: SoopGwanDomain {
         .habit
     }
-    
+
     public var urlPath: String {
         switch self {
         case .createHabit:
@@ -31,8 +31,8 @@ extension HabitAPI: SoopGwanAPI {
             return "/check"
         }
     }
-    
-    public var errorMap: [Int : SoopGwanError] {
+
+    public var errorMap: [Int: SoopGwanError] {
         switch self {
         case .createHabit, .fetchHabitToWeek, .fetchAllHabit:
             return [
@@ -48,7 +48,7 @@ extension HabitAPI: SoopGwanAPI {
             ]
         }
     }
-    
+
     public var method: Moya.Method {
         switch self {
         case .checkHabitToWeek, .checkHabitIsSucceed:
@@ -61,7 +61,7 @@ extension HabitAPI: SoopGwanAPI {
             return .delete
         }
     }
-    
+
     public var task: Moya.Task {
         switch self {
         case let .createHabit(content):
@@ -72,7 +72,7 @@ extension HabitAPI: SoopGwanAPI {
             return .requestPlain
         }
     }
-    
+
     public var jwtTokenType: JwtTokenType {
         return .accessToken
     }

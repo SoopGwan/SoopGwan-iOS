@@ -2,12 +2,12 @@ import Moya
 import Foundation
 
 public enum UserAPI {
-    case signin(content: SignInRequestDTO)
-    case signup(content: SignUpRequestDTO)
-    case verifyAuthCode(content: VerifyAuthCodeRequestDTO)
-    case sendAuthCode(content: SendAuthCodeDTO)
+    case signin(req: SignInRequestDTO)
+    case signup(req: SignUpRequestDTO)
+    case verifyAuthCode(req: VerifyAuthCodeRequestDTO)
+    case sendAuthCode(req: SendAuthCodeDTO)
     case checkAccountIDIsExist(accountID: String)
-    case renewalPassword(content: RenewalPasswordRequestDTO)
+    case renewalPassword(req: RenewalPasswordRequestDTO)
 }
 
 extension UserAPI: SoopGwanAPI {
@@ -32,7 +32,7 @@ extension UserAPI: SoopGwanAPI {
         }
     }
 
-    public var errorMap: [Int : SoopGwanError] {
+    public var errorMap: [Int: SoopGwanError] {
         switch self {
         case .signin, .verifyAuthCode:
             return [
