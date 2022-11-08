@@ -54,4 +54,3 @@ private extension JwtPlugin {
         keychain.save(type: .refreshToken, value: token.refreshToken)
     }
 }
-
