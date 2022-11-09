@@ -16,7 +16,7 @@ let project = Project.dynamicFramework(
         .SPM.Realm,
         .SPM.RealmSwift,
         .SPM.RxCocoa,
-        .SPM.RxMoya,
+        .SPM.CombineMoya,
         .SPM.Loaf,
         .SPM.Kingfisher
     ]

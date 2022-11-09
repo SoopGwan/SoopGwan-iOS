@@ -9,7 +9,7 @@ public extension TargetDependency.SPM {
     static let RxCocoa = TargetDependency.package(product: "RxCocoa")
     static let Realm = TargetDependency.package(product: "Realm")
     static let RealmSwift = TargetDependency.package(product: "RealmSwift")
-    static let RxMoya = TargetDependency.package(product: "RxMoya")
+    static let CombineMoya = TargetDependency.package(product: "CombineMoya")
     static let Loaf = TargetDependency.package(product: "Loaf")
     static let Kingfisher = TargetDependency.package(product: "Kingfisher")
 }
