@@ -1,5 +1,3 @@
-//
-//  RemoteUserDataSourceImpl.swift
 import Combine
 
 public final class RemoteUserDataSourceImpl: BaseRemoteDataSource<UserAPI>, RemoteUserDataSource {
