@@ -5,22 +5,24 @@ struct AchievementView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Spacer()
-                    .frame(height: 13)
-                Text("Achievement")
-                    .font(.system(size: 34, weight: .bold))
-                    .foregroundColor(Color("3D8361"))
-
+                HStack {
+                    Text("Achievement")
+                        .font(.system(size: 30, weight: .bold))
+                        .foregroundColor(Color("3D8361"))
+                        Spacer()
+                }
+                .padding(.top, 10)
                 ScrollView(.vertical) {
-                    ForEach(viewModel.list, id: \.self) { content in
-                        
+                    ForEach(viewModel.list, id: \.self) { list in
+                        AchievementCellView(
+                            title: list.title,
+                            content: list.date) {
+                                HomeView()
+                            }
                     }
-                    AchievementCellView(
-                        title: <#T##String#>,
-                        content: <#T##String#>)
                 }
             }
-            .padding(.horizontal, 20)
+                            .padding(.horizontal, 20)
         }
     }
 }

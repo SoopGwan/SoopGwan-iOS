@@ -1,10 +1,10 @@
 import Foundation
 
-public struct AchievementsListEntity: Equatable {
-    let title: String
-    let date: String
-    let rarityType: String
-    let productType: String
+public struct AchievementsListEntity: Equatable, Hashable {
+    public let title: String
+    public let date: String
+    public let rarityType: String
+    public let productType: String
 
     public init(
         title: String,

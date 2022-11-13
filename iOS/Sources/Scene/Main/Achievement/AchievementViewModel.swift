@@ -2,7 +2,7 @@ import Combine
 import Service
 
 final class AchievementViewModel: BaseViewModel {
-    let list: [AchievementsListEntity] = [
+    @Published var list: [AchievementsListEntity] = [
         .init(
             title: "1주 동안 한번도 습관 실천하지 않기",
             date: "2022-01-01 달성",

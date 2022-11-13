@@ -25,21 +25,23 @@ struct AchievementCellView<Destination>: View where Destination: View {
 
     var body: some View {
         NavigationLink(destination: destination) {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(Color("555555"))
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color("555555"))
 
+                    Spacer()
+                        .frame(height: 4)
+
+                    Text(content)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Color("999999"))
+                }
                 Spacer()
-                    .frame(height: 4)
-
-                Text(content)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(Color("999999"))
             }
-            .padding(.horizontal, 18)
-            .foregroundColor(.black)
-            .frame(height: 50)
+            .padding(.horizontal, 20)
+            .frame(height: 80)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .strokeBorder(Color("2F6149"), lineWidth: 2)
