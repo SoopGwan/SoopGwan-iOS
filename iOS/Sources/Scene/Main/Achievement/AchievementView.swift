@@ -1,8 +1,27 @@
 import SwiftUI
 
 struct AchievementView: View {
+    @StateObject var viewModel = AchievementViewModel()
     var body: some View {
-        Text("업적 화면입니다.")
+        NavigationView {
+            VStack(alignment: .leading) {
+                Spacer()
+                    .frame(height: 13)
+                Text("Achievement")
+                    .font(.system(size: 34, weight: .bold))
+                    .foregroundColor(Color("3D8361"))
+
+                ScrollView(.vertical) {
+                    ForEach(viewModel.list, id: \.self) { content in
+                        
+                    }
+                    AchievementCellView(
+                        title: <#T##String#>,
+                        content: <#T##String#>)
+                }
+            }
+            .padding(.horizontal, 20)
+        }
     }
 }
 
