@@ -2,19 +2,10 @@ import SwiftUI
 
 struct AchievementView: View {
     @StateObject var viewModel = AchievementViewModel()
+    @State var isAlertShow: Bool = false
+
     var body: some View {
         ZStack {
-            Button {
-                self.isAlertShow = true
-            } label: {
-                Text("업적 화면입니다.")
-            }
-                AchievementAlertView {
-                    self.isAlertShow.toggle()
-                }
-            }
-        }
-        NavigationView {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Achievement")
@@ -23,17 +14,32 @@ struct AchievementView: View {
                         Spacer()
                 }
                 .padding(.top, 10)
+
                 ScrollView(.vertical) {
                     ForEach(viewModel.list, id: \.self) { list in
-                        AchievementCellView(
-                            title: list.title,
-                            content: list.date) {
-                                HomeView()
+                        Button {
+                            withAnimation(Animation.linear) {
+                                self.isAlertShow = true
                             }
+
+                        } label: {
+                            AchievementCellView(
+                                title: list.title,
+                                content: list.date
+                            )
+                        }
                     }
                 }
             }
-                            .padding(.horizontal, 20)
+            .padding(.horizontal, 20)
+
+            if isAlertShow {
+                AchievementAlertView {
+                    withAnimation(Animation.linear) {
+                        self.isAlertShow.toggle()
+                    }
+                }
+            }
         }
     }
 }
