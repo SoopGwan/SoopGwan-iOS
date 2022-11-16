@@ -26,6 +26,6 @@ final class AchievementViewModel: BaseViewModel {
             date: "2022-05-05일 달성",
             rarityType: "gradation",
             productType: "alarm_clock"
-        ),
+        )
     ]
 }
