@@ -7,7 +7,7 @@ struct SoopGwanApp: App {
             TabbarView(
                 mainView: HomeView(),
                 achievementView: AchievementView(),
-                archiveView: ArchiveView(),
+                archiveView: ArchiveListView(),
                 settingView: SettingView()
             )
         }

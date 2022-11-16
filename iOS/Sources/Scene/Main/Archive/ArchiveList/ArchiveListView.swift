@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct ArchiveView: View {
-    @StateObject var viewModel = ArchiveViewModel()
+struct ArchiveListView: View {
+    @StateObject var viewModel = ArchiveListViewModel()
 
     var body: some View {
         ZStack(alignment: .top) {
