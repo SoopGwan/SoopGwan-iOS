@@ -4,6 +4,12 @@ import Service
 final class ArchiveListViewModel: BaseViewModel {
     @Published var yearSelect: String = "2022년"
     @Published var monthSelect: String = "11월"
+    @Published var selectList: ArchiveHabitEntity = .init(
+        id: 0,
+        startAt: "",
+        endAt: "",
+        level: 0
+    )
 
     @Published var list: [ArchiveHabitEntity] = [
         .init(
