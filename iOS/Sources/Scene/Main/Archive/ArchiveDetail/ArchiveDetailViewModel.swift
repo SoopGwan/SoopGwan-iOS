@@ -1,4 +1,5 @@
 import SwiftUI
+import Service
 import Combine
 
 final class ArchiveDetailViewModel: BaseViewModel {
@@ -6,6 +7,16 @@ final class ArchiveDetailViewModel: BaseViewModel {
     private let level: Int = 0
     private let date: String = ""
 
+    @Published var list: [ArciveDetailEntity] = [
+        .init(title: "기영이 죽이기", content: "습관을 실천하지 못했어요"),
+        .init(title: "전세현 죽이기", content: "습관을 2번 실천했어요"),
+        .init(title: "기영이 죽이기", content: "습관을 실천하지 못했어요"),
+        .init(title: "전세현 죽이기", content: "습관을 2번 실천했어요"),
+        .init(title: "기영이 죽이기", content: "습관을 실천하지 못했어요"),
+        .init(title: "전세현 죽이기", content: "습관을 2번 실천했어요"),
+        .init(title: "기영이 죽이기", content: "습관을 실천하지 못했어요"),
+        .init(title: "전세현 죽이기", content: "습관을 2번 실천했어요")
+    ]
     @Published var detailMessage = """
         일주일 동안 빠짐없이 실천한 습관 2개
         습관 5개 한번 이상 실천
