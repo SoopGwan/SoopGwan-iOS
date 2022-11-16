@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ArciveListCellView: View {
+struct ArchiveListCellView: View {
     let content: String
     let level: Int
 

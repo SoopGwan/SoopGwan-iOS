@@ -14,7 +14,7 @@ struct ArchiveView: View {
                         Button {
                             print("")
                         } label: {
-                            ArciveListCellView(
+                            ArchiveListCellView(
                                 content: "\(list.startAt) ~ \(list.endAt)",
                                 level: list.level
                             )
