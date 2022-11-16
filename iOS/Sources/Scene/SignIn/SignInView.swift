@@ -29,14 +29,7 @@ struct SignInView: View {
                     AuthTextField("비밀번호", isSecret: true, text: $password)
                         .padding(.bottom, 40)
                     HStack(alignment: .center) {
-                        Button {
-                            isAutoLogin.toggle()
-                        } label: {
-                            Image(systemName: isAutoLogin ? "checkmark.circle.fill" : "checkmark.circle")
-                                .resizable()
-                                .foregroundColor(Color("66A865"))
-                                .frame(width: 24, height: 24)
-                        }
+                        CheckBok(isOn: $isAutoLogin)
                         Text("자동 로그인")
                             .font(.system(size: 14, weight: .regular))
                             .foregroundColor(Color.gray)
