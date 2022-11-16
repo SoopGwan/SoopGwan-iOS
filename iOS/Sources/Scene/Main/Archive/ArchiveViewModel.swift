@@ -53,8 +53,13 @@ final class ArchiveViewModel: BaseViewModel {
     ]
     @Published var monthOptions = [
         DropdownOption(
+            key: "12월",
+            val: "12월"
+        ),
+        DropdownOption(
             key: "11월",
-            val: "11월"),
+            val: "11월"
+        ),
         DropdownOption(
             key: "10월",
             val: "10월"
