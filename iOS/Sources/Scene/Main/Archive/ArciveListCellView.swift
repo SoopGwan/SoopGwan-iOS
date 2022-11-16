@@ -13,25 +13,29 @@ struct ArciveListCellView: View {
     }
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(levelToTitleString(level: level))
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(Color("555555"))
+        ZStack {
+            Color.white
+
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(levelToTitleString(level: level))
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color("555555"))
+
+                    Spacer()
+                        .frame(height: 4)
+
+                    Text(content)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Color("999999"))
+                }
 
                 Spacer()
-                    .frame(height: 4)
 
-                Text(content)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(Color("999999"))
+                Image("lv\(level)")
+                    .resizable()
+                    .frame(width: 50, height: 50 )
             }
-
-            Spacer()
-
-            Image("lv\(level)")
-                .resizable()
-                .frame(width: 50, height: 50 )
         }
         .padding(.horizontal, 20)
         .frame(height: 80)
