@@ -17,7 +17,7 @@ struct HomeView: View {
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(Color("66A865"))
                 .padding(.bottom, 22)
-            LevelProfileView()
+            LevelProfileView(level: 1)
                 .padding(.bottom, 57)
             HStack(alignment: .center) {
                 Text("나의 습관")
