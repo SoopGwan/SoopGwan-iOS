@@ -15,7 +15,7 @@ struct AchievementAlertView: View {
                     .foregroundColor(Color(uiColor: .lightGray))
                     .font(.system(size: 12, weight: .medium))
                     .padding(.top, 8)
-                Image("test")
+                Image("color-vault")
                     .resizable()
                     .frame(width: 200, height: 200)
                 Text("""
