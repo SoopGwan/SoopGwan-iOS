@@ -25,19 +25,14 @@ struct SignInView: View {
                     AuthTextField("아이디", isSecret: false, text: $viewModel.id)
                         .padding(.bottom, 25)
                     AuthTextField("비밀번호", isSecret: true, text: $viewModel.password)
-                        .padding(.bottom, 40)
-                    HStack(alignment: .center) {
-                        CheckBok(isOn: $viewModel.isOnAutoSignin)
-                        Text("자동 로그인")
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundColor(Color.gray)
-                    }
-                    .padding(.bottom, 30)
+                        .padding(.bottom, 25)
                 }
-                AuthButton(title: "로그인") {
+                AuthButton(text: "로그인") {
                     viewModel.signinButtonDidTap()
                 }
-                Spacer()
+                .disabled(!viewModel.isSigninEnabled)
+                .padding(.bottom, 20)
+
                 HStack(alignment: .bottom, spacing: 3) {
                     Spacer()
                     Text("아직 회원이 아니신가요?")
@@ -53,11 +48,24 @@ struct SignInView: View {
                     }
                     Spacer()
                 }
+
+                Spacer()
             }
             .padding(.horizontal, 24)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .navigationViewStyle(.stack)
         .hideKeyboard()
+        .fullScreenCover(isPresented: $viewModel.isSuccessSignin) {
+            TabbarView(
+                mainView: HomeView(),
+                achievementView: AchievementView(),
+                archiveView: ArchiveListView(),
+                settingView: SettingView()
+            )
+        }
+
     }
 }
 
