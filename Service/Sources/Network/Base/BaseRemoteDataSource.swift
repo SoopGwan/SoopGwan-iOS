@@ -41,7 +41,9 @@ private extension BaseRemoteDataSource {
         return provider.requestPublisher(api, callbackQueue: .main)
             .retry(maxRetryCount)
             .timeout(45, scheduler: DispatchQueue.main)
-            .mapError { api.errorMap[$0.errorCode] ?? .unknown }
+            .mapError {
+                api.errorMap[$0.response?.statusCode ?? 0] ?? .unknown
+            }
             .eraseToAnyPublisher()
     }
 
