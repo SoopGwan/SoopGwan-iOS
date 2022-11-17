@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State var id: String = ""
-    @State var password: String = ""
-    @State var isAutoLogin: Bool = false
+    @StateObject var viewModel = SignInViewModel()
 
     var body: some View {
         NavigationView {
@@ -24,19 +22,21 @@ struct SignInView: View {
                             .foregroundColor(Color("3D8361"))
                     }
                     .padding(.bottom, 30)
-                    AuthTextField("아이디", isSecret: false, text: $id)
+                    AuthTextField("아이디", isSecret: false, text: $viewModel.id)
                         .padding(.bottom, 25)
-                    AuthTextField("비밀번호", isSecret: true, text: $password)
+                    AuthTextField("비밀번호", isSecret: true, text: $viewModel.password)
                         .padding(.bottom, 40)
                     HStack(alignment: .center) {
-                        CheckBok(isOn: $isAutoLogin)
+                        CheckBok(isOn: $viewModel.isOnAutoSignin)
                         Text("자동 로그인")
                             .font(.system(size: 14, weight: .regular))
                             .foregroundColor(Color.gray)
                     }
                     .padding(.bottom, 30)
                 }
-                AuthButton(title: "로그인", action: { })
+                AuthButton(title: "로그인") {
+                    viewModel.signinButtonDidTap()
+                }
                 Spacer()
                 HStack(alignment: .bottom, spacing: 3) {
                     Spacer()
