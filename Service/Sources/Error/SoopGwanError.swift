@@ -5,6 +5,7 @@ public enum SoopGwanError: Error {
     case unknown
     case badRequest
     case unauthorized
+    case userNotFound
     case notFound
     case conflict
     case toManyRequests
@@ -23,11 +24,13 @@ extension SoopGwanError: LocalizedError {
         case .unauthorized:
             return "토큰이 유효하지 않습니다."
         case .notFound:
-            return "잘못된 방식입니다."
+            return "정보를 찾을 수 없습니다."
         case .conflict:
             return "conflict가 발생했습니다."
         case .toManyRequests:
             return "잠시 후 다시 시도하세요"
+        case .userNotFound:
+            return "계정을 찾을 수 없습니다."
         }
     }
 }

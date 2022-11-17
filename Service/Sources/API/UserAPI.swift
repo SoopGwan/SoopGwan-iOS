@@ -38,7 +38,7 @@ extension UserAPI: SoopGwanAPI {
             return [
                 400: .badRequest,
                 401: .unauthorized,
-                404: .notFound,
+                404: .userNotFound,
                 500: .serverError
             ]
         case .signup:

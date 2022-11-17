@@ -19,6 +19,10 @@ public extension SoopGwanAPI {
     var headers: [String: String]? {
         ["Content-Type": "application/json"]
     }
+
+    var validationType: ValidationType {
+        return .successCodes
+    }
 }
 
 public enum SoopGwanDomain: String {
