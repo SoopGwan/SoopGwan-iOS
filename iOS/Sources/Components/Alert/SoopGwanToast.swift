@@ -56,10 +56,15 @@ struct SoopGwanToast: ViewModifier {
                 .background {
                     Rectangle()
                         .fill(.white)
-                        .cornerRadius(4)
+                        .cornerRadius(10)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("2F6149"), lineWidth: 0.5)
+                        }
+
                         .shadow(
-                            color: .gray.opacity(0.08),
-                            radius: 4,
+                            color: .gray.opacity(0.2),
+                            radius: 10,
                             y: 1
                         )
                 }
