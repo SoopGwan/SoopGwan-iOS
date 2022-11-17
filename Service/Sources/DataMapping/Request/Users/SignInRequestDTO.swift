@@ -1,11 +1,14 @@
 import Foundation
 
-public struct SignInRequestDTO: Codable {
-    let accountId: String
-    let password: String
-
-    enum CondingKeys: String, CodingKey {
-        case accountId = "account_id"
-        case password
+public struct SignInRequestDTO: Encodable {
+    public let accountId: String
+    public let password: String
+    
+    public init(
+        accountId: String,
+        password: String
+    ) {
+        self.accountId = accountId
+        self.password = password
     }
 }
