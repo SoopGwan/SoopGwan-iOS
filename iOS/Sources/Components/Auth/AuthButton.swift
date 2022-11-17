@@ -1,23 +1,77 @@
 import SwiftUI
 
-struct AuthButton: View {
-    let title: String
-    let action: () -> Void
+public struct AuthButton: View {
+    var text: String
+    var style: WideButtonStyle.Style
+    var color: Color
+    var action: () -> Void
 
-    var body: some View {
+    public init(
+        text: String = "",
+        style: WideButtonStyle.Style = .contained,
+        color: Color = Color("66A865"),
+        action: @escaping () -> Void = {}
+    ) {
+        self.text = text
+        self.style = style
+        self.color = color
+        self.action = action
+    }
+
+    public var body: some View {
         Button(action: action) {
-            Text(title)
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, maxHeight: 48)
-                .background(Color("66A865"))
-                .cornerRadius(5)
+            HStack {
+                Spacer()
+
+                Text(text)
+                    .padding(.vertical, 14)
+
+                Spacer()
+            }
         }
+        .buttonStyle(WideButtonStyle(style: style, color: color))
+    }
+}
+public struct WideButtonStyle: ButtonStyle {
+    public enum Style {
+        case contained
+    }
+
+    var style: Style
+    var color: Color
+
+    public func makeBody(configuration: Configuration) -> some View {
+        return AnyView(ContainedButton(configuration: configuration, color: color))
     }
 }
 
-struct AuthButton_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthButton(title: "회원가입", action: { })
+// MARK: - Usage
+extension Button {
+    func dmsStyle(_ style: WideButtonStyle.Style, color: Color) -> some View {
+        self.buttonStyle(WideButtonStyle(style: style, color: color))
+    }
+}
+
+// MARK: - Contained
+extension WideButtonStyle {
+    struct ContainedButton: View {
+        let configuration: ButtonStyle.Configuration
+        let color: Color
+        var opacity: Double {
+            isEnabled ?
+                configuration.isPressed ? 0.7 :
+                    1.0 :
+                    0.5
+        }
+        @Environment(\.isEnabled) private var isEnabled: Bool
+
+        var body: some View {
+            configuration.label
+                .font(.system(size: 15, weight: .medium))
+                .background(color)
+                .foregroundColor(.white)
+                .cornerRadius(5)
+                .opacity(opacity)
+        }
     }
 }

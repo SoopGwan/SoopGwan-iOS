@@ -11,7 +11,7 @@ struct AuthNavigationLink<Destination>: View where Destination: View {
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, maxHeight: 48)
-                .background(Color.black)
+                .background(Color("66A865"))
                 .cornerRadius(5)
         })
     }
