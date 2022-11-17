@@ -14,13 +14,9 @@ final class SignInViewModel: BaseViewModel {
 
     func signinButtonDidTap() {
         guard isSigninEnabled else { return }
-        print("\(SignInRequestDTO(accountId: id, password: password))")
         addCancellable(
             remoteUserDataSourceImpl.signin(
-                req: SignInRequestDTO(
-                    accountId: id,
-                    password: password
-                )
+                req: SignInRequestDTO(accountId: id, password: password)
             )
         ) { [weak self] _ in
             self?.isSuccessSignin = true
