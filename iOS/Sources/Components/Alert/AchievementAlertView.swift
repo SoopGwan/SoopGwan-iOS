@@ -33,7 +33,6 @@ struct AchievementAlertView: View {
                 .foregroundColor(Color("2F6149"))
                 .padding(.vertical, 40)
             }
-            .frame(width: .infinity)
             .padding(.horizontal, 39)
             .background(Color.white)
             .cornerRadius(32)

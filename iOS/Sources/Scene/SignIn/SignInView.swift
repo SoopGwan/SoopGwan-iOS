@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State var id: String = ""
-    @State var password: String = ""
-    @State var isAutoLogin: Bool = false
+    @StateObject var viewModel = SignInViewModel()
 
     var body: some View {
         NavigationView {
@@ -24,27 +22,17 @@ struct SignInView: View {
                             .foregroundColor(Color("3D8361"))
                     }
                     .padding(.bottom, 30)
-                    AuthTextField("아이디", isSecret: false, text: $id)
+                    AuthTextField("아이디", isSecret: false, text: $viewModel.id)
                         .padding(.bottom, 25)
-                    AuthTextField("비밀번호", isSecret: true, text: $password)
-                        .padding(.bottom, 40)
-                    HStack(alignment: .center) {
-                        Button {
-                            isAutoLogin.toggle()
-                        } label: {
-                            Image(systemName: isAutoLogin ? "checkmark.circle.fill" : "checkmark.circle")
-                                .resizable()
-                                .foregroundColor(Color("66A865"))
-                                .frame(width: 24, height: 24)
-                        }
-                        Text("자동 로그인")
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundColor(Color.gray)
-                    }
-                    .padding(.bottom, 30)
+                    AuthTextField("비밀번호", isSecret: true, text: $viewModel.password)
+                        .padding(.bottom, 25)
                 }
-                AuthButton(title: "로그인", action: { })
-                Spacer()
+                AuthButton(text: "로그인") {
+                    viewModel.signinButtonDidTap()
+                }
+                .disabled(!viewModel.isSigninEnabled)
+                .padding(.bottom, 20)
+
                 HStack(alignment: .bottom, spacing: 3) {
                     Spacer()
                     Text("아직 회원이 아니신가요?")
@@ -60,11 +48,24 @@ struct SignInView: View {
                     }
                     Spacer()
                 }
+
+                Spacer()
             }
             .padding(.horizontal, 24)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .navigationViewStyle(.stack)
         .hideKeyboard()
+        .fullScreenCover(isPresented: $viewModel.isSuccessSignin) {
+            TabbarView(
+                mainView: HomeView(),
+                achievementView: AchievementView(),
+                archiveView: ArchiveListView(),
+                settingView: SettingView()
+            )
+        }
+
     }
 }
 

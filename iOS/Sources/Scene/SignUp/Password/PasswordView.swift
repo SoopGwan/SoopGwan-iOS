@@ -22,7 +22,7 @@ struct PasswordView: View {
                 .padding(.bottom, 24)
             AuthTextField("비밀번호 확인", isSecret: true, text: $verifyPassword)
             Spacer()
-            AuthButton(title: "회원가입", action: { })
+            AuthButton(text: "회원가입", action: { })
         }
         .padding(.horizontal, 24)
         .setBackbutton()

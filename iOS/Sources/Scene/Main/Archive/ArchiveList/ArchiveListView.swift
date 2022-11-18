@@ -1,7 +1,9 @@
 import SwiftUI
+import Service
 
-struct ArchiveView: View {
-    @StateObject var viewModel = ArchiveViewModel()
+struct ArchiveListView: View {
+    @StateObject var viewModel = ArchiveListViewModel()
+    @State private var showModal = false
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -12,9 +14,11 @@ struct ArchiveView: View {
                 ScrollView(.vertical) {
                     ForEach(viewModel.list, id: \.self) { list in
                         Button {
-                            print("")
+                            print("\(list)")
+                            viewModel.selectList = list
+                            self.showModal = true
                         } label: {
-                            ArciveListCellView(
+                            ArchiveListCellView(
                                 content: "\(list.startAt) ~ \(list.endAt)",
                                 level: list.level
                             )
@@ -50,6 +54,12 @@ struct ArchiveView: View {
 
         }
         .padding(.horizontal, 20)
-
+        .sheet(isPresented: self.$showModal) {
+            ArchiveDetailView(
+                id: viewModel.selectList.id,
+                level: viewModel.selectList.level,
+                date: "\(viewModel.selectList.startAt) ~ \(viewModel.selectList.endAt)"
+            )
+        }
     }
 }

@@ -15,14 +15,15 @@ open class BaseViewModel: ObservableObject {
         onReceiveValue: @escaping (T) -> Void,
         onReceiveError: ((SoopGwanError) -> Void)? = nil
     ) {
+        print("addCancellable")
         isLoading = true
         publisher
             .sink(receiveCompletion: { [weak self] completion in
+                print(completion)
                 if case let .failure(error) = completion {
                     if let onReceiveError {
                         onReceiveError(error.asSoopGwanError)
                     }
-
                     self?.errorMessage = error.localizedDescription
                     self?.isErrorOcuured = true
                 }

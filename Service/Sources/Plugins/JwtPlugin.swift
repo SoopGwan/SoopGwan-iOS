@@ -3,11 +3,7 @@ import Foundation
 import Security
 
 public struct JwtPlugin: PluginType {
-    private let keychain: any Keychain
-
-    public init(keychain: any Keychain) {
-        self.keychain = keychain
-    }
+    private let keychain = KeychainImpl()
 
     public func prepare(
         _ request: URLRequest,

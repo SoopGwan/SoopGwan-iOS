@@ -4,21 +4,18 @@ import Foundation
 import Moya
 
 public class BaseRemoteDataSource<API: SoopGwanAPI> {
-    private let keychain: any Keychain
+    private let keychain = KeychainImpl()
     private let provider: MoyaProvider<API>
     private let decoder = JSONDecoder()
     private let maxRetryCount = 2
 
     public init(
-        keychain: any Keychain,
         provider: MoyaProvider<API>? = nil
     ) {
-        self.keychain = keychain
-
         #if DEBUG
-        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain), NetworkLoggerPlugin()])
+        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(), NetworkLoggerPlugin()])
         #else
-        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin(keychain: keychain)])
+        self.provider = provider ?? MoyaProvider(plugins: [JwtPlugin()])
         #endif
     }
 
@@ -44,7 +41,9 @@ private extension BaseRemoteDataSource {
         return provider.requestPublisher(api, callbackQueue: .main)
             .retry(maxRetryCount)
             .timeout(45, scheduler: DispatchQueue.main)
-            .mapError { api.errorMap[$0.errorCode] ?? .unknown }
+            .mapError {
+                api.errorMap[$0.response?.statusCode ?? 0] ?? .unknown
+            }
             .eraseToAnyPublisher()
     }
 

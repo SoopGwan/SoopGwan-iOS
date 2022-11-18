@@ -3,7 +3,7 @@ import SwiftUI
 struct TabbarView: View {
     let mainView: HomeView
     let achievementView: AchievementView
-    let archiveView: ArchiveView
+    let archiveView: ArchiveListView
     let settingView: SettingView
 
     var body: some View {
@@ -58,7 +58,7 @@ struct HomeView_Previews: PreviewProvider {
         TabbarView(
             mainView: HomeView(),
             achievementView: AchievementView(),
-            archiveView: ArchiveView(),
+            archiveView: ArchiveListView(),
             settingView: SettingView()
         )
     }

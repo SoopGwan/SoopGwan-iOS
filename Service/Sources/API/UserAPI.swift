@@ -38,7 +38,7 @@ extension UserAPI: SoopGwanAPI {
             return [
                 400: .badRequest,
                 401: .unauthorized,
-                404: .notFound,
+                404: .userNotFound,
                 500: .serverError
             ]
         case .signup:
@@ -73,17 +73,20 @@ extension UserAPI: SoopGwanAPI {
     }
 
     public var task: Moya.Task {
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+
         switch self {
         case let .signin(content):
-            return .requestJSONEncodable(content)
+            return .requestCustomJSONEncodable(content, encoder: encoder)
         case let .signup(content):
-            return .requestJSONEncodable(content)
+            return .requestCustomJSONEncodable(content, encoder: encoder)
         case let .verifyAuthCode(content):
-            return .requestJSONEncodable(content)
+            return .requestCustomJSONEncodable(content, encoder: encoder)
         case let .sendAuthCode(content):
-            return .requestJSONEncodable(content)
+            return .requestCustomJSONEncodable(content, encoder: encoder)
         case let .renewalPassword(content):
-            return .requestJSONEncodable(content)
+            return .requestCustomJSONEncodable(content, encoder: encoder)
         default:
             return .requestPlain
         }
