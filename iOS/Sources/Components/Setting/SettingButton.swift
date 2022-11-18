@@ -1,37 +1,37 @@
 import SwiftUI
 
-struct SettingButton<Destination>: View where Destination: View {
+struct SettingButton: View {
     let title: String
     let color: Color
-    let destination: () -> Destination
+    let action: () -> Void
 
     init(
         title: String,
         color: Color = .black,
-        destination: @escaping () -> Destination
+        action: @escaping () -> Void
     ) {
         self.title = title
         self.color = color
-        self.destination = destination
+        self.action = action
     }
 
     var body: some View {
-        NavigationLink(destination: destination) {
-                HStack {
-                    Text(title)
-                        .font(.system(size: 18, weight: .semibold))
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .resizable()
-                        .frame(width: 16, height: 14)
-                }
-                .padding(.horizontal, 18)
-                .foregroundColor(color)
-                .frame(height: 50)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(.gray, lineWidth: 1)
-                }
+        Button(action: action, label: {
+            HStack {
+                Text(title)
+                    .font(.system(size: 18, weight: .semibold))
+                Spacer()
+                Image(systemName: "arrow.right")
+                    .resizable()
+                    .frame(width: 16, height: 14)
             }
+            .padding(.horizontal, 18)
+            .foregroundColor(color)
+            .frame(height: 50)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(.gray, lineWidth: 1)
+            }
+        })
     }
 }

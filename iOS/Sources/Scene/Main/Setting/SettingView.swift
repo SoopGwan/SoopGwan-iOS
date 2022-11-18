@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SettingView: View {
+    @StateObject var viewModel = SettingViewModel()
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -32,22 +34,33 @@ struct SettingView: View {
                     }
 
                     SettingButton(title: "비밀번호 변경하기") {
-                        HomeView()
+                        viewModel.isLChangePassword.toggle()
                     }
-                    SettingButton(title: "오픈소스 라이센스") {
-                        HomeView()
-                    }
-                    SettingButton(title: "개발자 소개") {
-                        HomeView()
-                    }
-                    SettingButton(title: "로그아웃", color: .red) {
-                        HomeView()
-                    }
-                    Spacer()
 
+                    SettingButton(title: "오픈소스 라이센스") {
+                        viewModel.isOtherView.toggle()
+                    }
+
+                    SettingButton(title: "개발자 소개") {
+                        viewModel.isOtherView.toggle()
+                    }
+
+                    SettingButton(title: "로그아웃", color: .red) {
+                        viewModel.isLogOut.toggle()
+                    }
+
+                    Spacer()
                 }
             }
             .padding(.horizontal, 20)
+            .alert(isPresented: $viewModel.isLogOut) {
+                Alert(
+                    title: Text("로그아웃"),
+                    message: Text("로그아웃 하시겠습니까?"),
+                    primaryButton: .destructive(Text("로그아웃"), action: {}),
+                    secondaryButton: .cancel(Text("취소")))
+            }
+
         }
     }
 }

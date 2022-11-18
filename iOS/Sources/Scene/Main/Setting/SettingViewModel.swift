@@ -1,9 +1,8 @@
-//
-//  SettingViewModel.swift
-//  SoopGwan
-//
-//  Created by 김대희 on 2022/11/03.
-//  Copyright © 2022 com.SoopGwan. All rights reserved.
-//
+import Combine
+import Service
 
-import Foundation
+final class SettingViewModel: BaseViewModel {
+    @Published var isLogOut: Bool = false
+    @Published var isLChangePassword: Bool = false
+    @Published var isOtherView: Bool = false
+}
