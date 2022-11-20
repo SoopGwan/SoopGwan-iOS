@@ -1,6 +1,14 @@
 import Foundation
 
 public struct CheckHabitToWeekRequestDTO: Codable {
-    let id: Int
-    let status: Int
+    public let id: Int
+    public let status: Int
+
+    public init(
+        id: Int,
+        status: Int
+    ) {
+        self.id = id
+        self.status = status
+    }
 }

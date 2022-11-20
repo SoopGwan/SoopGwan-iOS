@@ -1,5 +1,9 @@
 import Foundation
 
 public struct CreateHabitRequestDTO: Codable {
-    let content: String
+    public let content: String
+
+    public init(content: String) {
+        self.content = content
+    }
 }

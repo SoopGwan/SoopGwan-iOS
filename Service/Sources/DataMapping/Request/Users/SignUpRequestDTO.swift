@@ -10,7 +10,7 @@ public struct SignUpRequestDTO: Codable {
         self.accountId = accountId
         self.password = password
     }
-    
+
     public let phoneNumber: String
     public let accountId: String
     public let password: String

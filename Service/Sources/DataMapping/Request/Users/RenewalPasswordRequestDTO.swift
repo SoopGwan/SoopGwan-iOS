@@ -1,8 +1,16 @@
 import Foundation
 
 public struct RenewalPasswordRequestDTO: Codable {
-    let password: String
-    let newPassword: String
+    public let password: String
+    public let newPassword: String
+
+    public init(
+        password: String,
+        newPassword: String
+    ) {
+        self.password = password
+        self.newPassword = newPassword
+    }
 
     enum CondingKeys: String, CodingKey {
         case password
