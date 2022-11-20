@@ -9,7 +9,7 @@ public protocol SoopGwanAPI: TargetType, JwtAuthorizable {
 
 public extension SoopGwanAPI {
     var baseURL: URL {
-        URL(string: "http://172.20.10.8:8080")!
+        URL(string: "https://server.daehyun.dev")!
     }
 
     var path: String {
