@@ -16,11 +16,3 @@ struct AuthNavigationLink<Destination>: View where Destination: View {
         })
     }
 }
-
-struct AuthNavigationLink_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthNavigationLink(title: "회원가입") {
-            PasswordView()
-        }
-    }
-}

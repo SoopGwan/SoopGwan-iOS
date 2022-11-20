@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct PasswordView: View {
-    @State var password: String = ""
-    @State var verifyPassword: String = ""
+    @State var id: String
+    @State var phoneNumber: String
+
+    @StateObject var viewModel = PasswordViewModel()
 
     var body: some View {
         VStack(
@@ -18,9 +20,9 @@ struct PasswordView: View {
                     .font(.system(size: 16, weight: .semibold))
             }
             .padding(.bottom, 24)
-            AuthTextField("비밀번호", isSecret: true, text: $password)
+            AuthTextField("비밀번호", isSecret: true, text: $viewModel.password)
                 .padding(.bottom, 24)
-            AuthTextField("비밀번호 확인", isSecret: true, text: $verifyPassword)
+            AuthTextField("비밀번호 확인", isSecret: true, text: $viewModel.verifyPassword)
             Spacer()
             AuthButton(text: "회원가입", action: { })
         }
@@ -28,11 +30,5 @@ struct PasswordView: View {
         .setBackbutton()
         .hideKeyboard()
         .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-struct PasswordView_Previews: PreviewProvider {
-    static var previews: some View {
-        PasswordView()
     }
 }

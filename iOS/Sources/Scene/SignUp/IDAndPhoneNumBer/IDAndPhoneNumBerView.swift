@@ -27,7 +27,10 @@ struct IDAndPhoneNumBerView: View {
                 .keyboardType(.numberPad)
             Spacer()
             AuthNavigationLink(title: "다음") {
-                AuthCodeView()
+                AuthCodeView(
+                    id: id,
+                    phoneNumber: phoneNumber
+                )
             }
         }
         .padding(.horizontal, 24)

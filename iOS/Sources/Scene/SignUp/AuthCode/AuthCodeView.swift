@@ -3,6 +3,9 @@ import SwiftUI
 struct AuthCodeView: View {
     @State var authCode: String = ""
 
+    @State var id: String
+    @State var phoneNumber: String
+
     var body: some View {
         VStack(
             alignment: .leading,
@@ -38,17 +41,14 @@ struct AuthCodeView: View {
             }
             Spacer()
             AuthNavigationLink(title: "다음") {
-                PasswordView()
+                PasswordView(
+                    id: id,
+                    phoneNumber: phoneNumber
+                )
             }
         }
         .setBackbutton()
         .hideKeyboard()
         .padding(.horizontal, 24)
-    }
-}
-
-struct AuthCodeView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthCodeView()
     }
 }
