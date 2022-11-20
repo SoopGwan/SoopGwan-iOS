@@ -1,7 +1,17 @@
 import Foundation
 
 public struct SignUpRequestDTO: Codable {
-    let phoneNumber: String
-    let accountId: String
-    let password: String
+    public init(
+        phoneNumber: String,
+        accountId: String,
+        password: String
+    ) {
+        self.phoneNumber = phoneNumber
+        self.accountId = accountId
+        self.password = password
+    }
+    
+    public let phoneNumber: String
+    public let accountId: String
+    public let password: String
 }
