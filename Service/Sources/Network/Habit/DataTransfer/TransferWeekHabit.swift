@@ -11,7 +11,8 @@ extension WeekHabitDTO {
         WeekHabitEntity(
             id: id,
             title: title,
-            successStatus: successStatus
+            successStatus: successStatus,
+            habitCount: habitCount
         )
     }
 }

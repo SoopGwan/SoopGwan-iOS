@@ -3,6 +3,8 @@ import Foundation
 extension Int {
     func levelToTitle() -> String {
         switch self {
+        case -1:
+            return ""
         case 0:
             return "나무가 썩었어요"
         case 1:
@@ -20,6 +22,8 @@ extension Int {
 
     func levelToImageName() -> String {
         switch self {
+        case -1:
+            return ""
         case 0:
             return "lv0"
         case 1:
@@ -37,6 +41,8 @@ extension Int {
 
     func levelToContent() -> String {
         switch self {
+        case -1:
+            return ""
         case 0:
             return "죽순이 죽었어요 ㅜ"
         case 1:

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LevelProfileView: View {
-    @State var level: Int
+    @Binding var level: Int
     var body: some View {
         ZStack {
             Color.white
@@ -30,11 +30,5 @@ struct LevelProfileView: View {
         }
         .cornerRadius(32, antialiased: true)
 
-    }
-}
-
-struct LevelProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        LevelProfileView(level: 1)
     }
 }

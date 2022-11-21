@@ -22,7 +22,7 @@ struct HomeView: View {
             ) {
                 Spacer()
                     .frame(height: 10)
-                LevelProfileView(level: 2)
+                LevelProfileView(level: $viewModel.habitLevel)
                     .padding(.bottom, 30)
                     .padding(.horizontal, 50)
 
