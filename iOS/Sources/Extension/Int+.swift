@@ -14,7 +14,7 @@ extension Int {
         case 3:
             return "LV 3. 나무 분재"
         case 4:
-            return "LV 3. 나무 완성!"
+            return "LV 4. 나무 완성!"
         default:
             return "너 뭐야"
         }

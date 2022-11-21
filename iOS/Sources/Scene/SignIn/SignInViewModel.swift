@@ -2,8 +2,8 @@ import Combine
 import Service
 
 final class SignInViewModel: BaseViewModel {
-    @Published var id = "0824dh"
-    @Published var password = "qwert12345!"
+    @Published var id = "test1234"
+    @Published var password = "Test1234!"
 
 //    @Published var id = ""
 //    @Published var password = ""
