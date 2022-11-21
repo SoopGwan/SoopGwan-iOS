@@ -28,7 +28,7 @@ public struct CheckboxStyle: ToggleStyle {
                 .foregroundColor(configuration.isOn ? Color("66A865") : .gray)
                 .opacity(isEnabled ? 1.0 : 0.5)
                 .onTapGesture {
-                    configuration.isOn.toggle()
+                    configuration.isOn = true
                 }
         }
     }
