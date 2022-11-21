@@ -6,6 +6,8 @@ final class PasswordViewModel: BaseViewModel {
     @Published var verifyPassword: String = ""
     @Published var isSuccessSignup = false
 
+    @Published var isSuccessAlert: Bool = false
+    @Published var isSuccessMessage: String = ""
     var isSignUpEnabled: Bool {
         !password.isEmpty && !verifyPassword.isEmpty
     }
@@ -22,6 +24,8 @@ final class PasswordViewModel: BaseViewModel {
                 )
             )
         ) { [weak self] _ in
+            self?.isSuccessAlert.toggle()
+            self?.isSuccessMessage = "회원가입이 완료되었습니다."
             self?.isSuccessSignup = true
         }
     }

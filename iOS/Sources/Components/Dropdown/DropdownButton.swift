@@ -10,9 +10,9 @@ struct DropdownButton: View {
 
     let buttonHeight: CGFloat = 36
     var body: some View {
-        Button(action: {
+        Button {
             self.shouldShowDropdown.toggle()
-        }) {
+        } label: {
             HStack {
                 Text(displayText)
                     .font(.system(size: 16, weight: .medium))

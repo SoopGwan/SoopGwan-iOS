@@ -2,6 +2,11 @@ import SwiftUI
 
 struct AuthCodeView: View {
     @State var authCode: String = ""
+    @State var buttonPressed: Bool = false
+
+    var isButtonEnabled: Bool {
+        !authCode.isEmpty
+    }
 
     @State var id: String
     @State var phoneNumber: String
@@ -40,15 +45,20 @@ struct AuthCodeView: View {
                 Spacer()
             }
             Spacer()
-            AuthNavigationLink(title: "다음") {
-                PasswordView(
-                    id: id,
-                    phoneNumber: phoneNumber
-                )
+            AuthButton(text: "다음") {
+                buttonPressed.toggle()
             }
+            .disabled(!isButtonEnabled)
         }
         .setBackbutton()
         .hideKeyboard()
+        .navigate(
+            to: PasswordView(
+                id: id,
+                phoneNumber: phoneNumber
+            ),
+            when: $buttonPressed
+        )
         .padding(.horizontal, 24)
     }
 }

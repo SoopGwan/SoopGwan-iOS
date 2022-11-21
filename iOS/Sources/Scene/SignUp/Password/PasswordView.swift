@@ -20,15 +20,26 @@ struct PasswordView: View {
                     .font(.system(size: 16, weight: .semibold))
             }
             .padding(.bottom, 24)
+
             AuthTextField("비밀번호", isSecret: true, text: $viewModel.password)
                 .padding(.bottom, 24)
+
             AuthTextField("비밀번호 확인", isSecret: true, text: $viewModel.verifyPassword)
+
             Spacer()
-            AuthButton(text: "회원가입", action: { })
+
+            AuthButton(text: "회원가입", action: {
+                viewModel.signUpButtonPressed(id: id, phoneNumber: phoneNumber)
+            })
+            .disabled(!viewModel.isSignUpEnabled)
         }
         .padding(.horizontal, 24)
         .setBackbutton()
         .hideKeyboard()
         .navigationBarTitleDisplayMode(.inline)
+        .fullScreenCover(isPresented: $viewModel.isSuccessSignup) {
+            SignInView(isToast: true)
+        }
+        .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
     }
 }

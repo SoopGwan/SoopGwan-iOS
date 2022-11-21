@@ -11,7 +11,10 @@ struct ArchiveListView: View {
                 Spacer()
                     .frame(height: 66)
 
-                ScrollView(.vertical) {
+                ScrollView(
+                    .vertical,
+                    showsIndicators: false
+                ) {
                     ForEach(viewModel.list, id: \.self) { list in
                         Button {
                             print("\(list)")
@@ -51,9 +54,11 @@ struct ArchiveListView: View {
                 )
             }
             .padding(.top, 10)
+            .padding(.bottom, 1)
 
         }
         .padding(.horizontal, 20)
+        .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .sheet(isPresented: self.$showModal) {
             ArchiveDetailView(
                 id: viewModel.selectList.id,

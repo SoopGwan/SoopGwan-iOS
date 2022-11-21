@@ -11,11 +11,11 @@ struct AchievementAlertView: View {
                 Text("하루에 하나 이상 1달간 습관 실천하기")
                     .font(.system(size: 16, weight: .semibold))
                     .padding(.top, 40)
-                Text("2022-01-01 달성")
+                Text("2022-08-24 달성")
                     .foregroundColor(Color(uiColor: .lightGray))
                     .font(.system(size: 12, weight: .medium))
                     .padding(.top, 8)
-                Image("color-vault")
+                Image("premium-vault")
                     .resizable()
                     .frame(width: 200, height: 200)
                 Text("""

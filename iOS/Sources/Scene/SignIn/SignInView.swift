@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
+    @State var isToast: Bool
 
     var body: some View {
         NavigationView {
@@ -38,13 +39,14 @@ struct SignInView: View {
                     Text("아직 회원이 아니신가요?")
                         .font(.system(size: 12, weight: .regular))
                         .foregroundColor(.gray)
-                    NavigationLink {
-                        IDAndPhoneNumBerView()
+                    Button {
+                        viewModel.buttonPressed.toggle()
                     } label: {
                         Text("회원가입")
                             .font(.system(size: 12, weight: .regular))
                             .underline()
                             .foregroundColor(.gray)
+
                     }
                     Spacer()
                 }
@@ -54,9 +56,13 @@ struct SignInView: View {
             .padding(.horizontal, 24)
             .navigationBarTitleDisplayMode(.inline)
         }
-        .dmsToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-        .navigationViewStyle(.stack)
+        .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .soopGwanToast(isShowing: $isToast, message: "회원가입이 완료되었어요.", style: .success)
         .hideKeyboard()
+        .navigate(
+            to: IDAndPhoneNumBerView(),
+            when: $viewModel.buttonPressed
+        )
         .fullScreenCover(isPresented: $viewModel.isSuccessSignin) {
             TabbarView(
                 mainView: HomeView(),
@@ -66,11 +72,5 @@ struct SignInView: View {
             )
         }
 
-    }
-}
-
-struct LoginScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInView()
     }
 }

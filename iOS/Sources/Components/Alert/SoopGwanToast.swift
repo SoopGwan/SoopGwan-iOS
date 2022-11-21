@@ -83,7 +83,7 @@ struct SoopGwanToast: ViewModifier {
 }
 
 public extension View {
-    func dmsToast(
+    func soopGwanToast(
         isShowing: Binding<Bool>,
         message: String,
         style: DmsToastStyle
