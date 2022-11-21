@@ -5,7 +5,7 @@ public enum HabitAPI {
     case createHabit(req: CreateHabitRequestDTO)
     case deleteHabit(id: Int)
     case fetchHabitToWeek
-    case checkHabitIsSucceed(id: String)
+    case checkHabitIsSucceed(id: Int)
     case fetchAllHabit
     case checkHabitToWeek(req: CheckHabitToWeekRequestDTO)
 }
@@ -23,8 +23,8 @@ extension HabitAPI: SoopGwanAPI {
             return "/\(id)"
         case .fetchHabitToWeek:
             return "/week"
-        case .checkHabitIsSucceed:
-            return "/success/check"
+        case let .checkHabitIsSucceed(id):
+            return "/day/check/\(id)"
         case .fetchAllHabit:
             return "/"
         case .checkHabitToWeek:

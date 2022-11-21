@@ -17,7 +17,7 @@ public final class RemoteHabitDataSourceImpl: BaseRemoteDataSource<HabitAPI>, Re
             .eraseToAnyPublisher()
     }
 
-    public func checkHabitIsSucceed(id: String) -> AnyPublisher<Void, SoopGwanError> {
+    public func checkHabitIsSucceed(id: Int) -> AnyPublisher<Void, SoopGwanError> {
         request(.checkHabitIsSucceed(id: id))
             .eraseToAnyPublisher()
     }
