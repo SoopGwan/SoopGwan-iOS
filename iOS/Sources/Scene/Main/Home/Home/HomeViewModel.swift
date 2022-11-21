@@ -17,6 +17,14 @@ final class HomeViewModel: BaseViewModel {
         }
     }
 
+    func fatchHabitStatus(_ id: Int) {
+        addCancellable(
+            remoteHabitDataSourceImpl
+                .checkHabitIsSucceed(id: id)
+        ) { _ in
+        }
+    }
+
     func addHabit() {
         addCancellable(
             remoteHabitDataSourceImpl

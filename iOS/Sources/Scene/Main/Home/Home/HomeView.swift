@@ -55,7 +55,6 @@ struct HomeView: View {
                         title: list.title,
                         successStatus: list.successStatus)
                     .padding(.horizontal, 50)
-
                 }
                 Spacer()
                     .frame(height: 10)
