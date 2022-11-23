@@ -35,6 +35,10 @@ struct SettingView: View {
                     viewModel.isLChangePassword.toggle()
                 }
 
+                SettingButton(title: "오늘의 운세") {
+                    viewModel.isOtherView.toggle()
+                }
+
                 SettingButton(title: "오픈소스 라이센스") {
                     viewModel.isOtherView.toggle()
                 }
@@ -49,16 +53,24 @@ struct SettingView: View {
 
                 Spacer()
             }
-            Spacer()
-                .padding(1)
         }
         .padding(.horizontal, 20)
         .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+        .sheet(isPresented: $viewModel.isLChangePassword) {
+            PasswordView(id: "0", phoneNumber: "00")
+        }
+        .fullScreenCover(
+            isPresented: $viewModel.isLogOutButtonPressed) {
+                NavigationView {
+                    SignInView(isToast: false)
+                }
+                .accentColor(.black)
+            }
         .alert(isPresented: $viewModel.isLogOut) {
             Alert(
                 title: Text("로그아웃"),
                 message: Text("로그아웃 하시겠습니까?"),
-                primaryButton: .destructive(Text("로그아웃"), action: {}),
+                primaryButton: .destructive(Text("로그아웃"), action: { viewModel.isLogOutButtonPressed.toggle() }),
                 secondaryButton: .cancel(Text("취소")))
         }
     }
