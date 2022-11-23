@@ -21,7 +21,7 @@ final class ArchiveDetailViewModel: BaseViewModel {
         한번도 실천하지 않은 습관 2개
         화이팅입니다.
         """
-    func onAppear(id: Int, level: Int, date: String) {
+    func onAppear(level: Int, date: String) {
 
     }
 }

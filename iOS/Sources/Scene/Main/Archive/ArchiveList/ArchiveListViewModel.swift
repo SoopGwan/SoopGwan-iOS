@@ -7,7 +7,6 @@ final class ArchiveListViewModel: BaseViewModel {
     @Published var list: [ArchiveHabitEntity] = []
 
     @Published var selectList: ArchiveHabitEntity = .init(
-        id: 0,
         startAt: "",
         endAt: "",
         level: 0

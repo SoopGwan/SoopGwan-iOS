@@ -64,7 +64,6 @@ struct ArchiveListView: View {
         .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .sheet(isPresented: self.$showModal) {
             ArchiveDetailView(
-                id: viewModel.selectList.id,
                 level: viewModel.selectList.level,
                 date: "\(viewModel.selectList.startAt) ~ \(viewModel.selectList.endAt)"
             )

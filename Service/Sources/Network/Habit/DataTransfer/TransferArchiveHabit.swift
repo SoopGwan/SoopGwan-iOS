@@ -10,7 +10,6 @@ extension FetchArchiveHabitResponseDTO {
 extension ArciveHabitDTO {
     func toDomain() -> ArchiveHabitEntity {
         ArchiveHabitEntity(
-            id: id,
             startAt: startAt,
             endAt: endAt,
             level: level

@@ -5,16 +5,13 @@ struct ArchiveDetailView: View {
     @StateObject var viewModel = ArchiveDetailViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    private let id: Int
     private let level: Int
     private let date: String
 
     init(
-        id: Int,
         level: Int,
         date: String
     ) {
-        self.id = id
         self.level = level
         self.date = date
     }
@@ -130,7 +127,7 @@ struct ArchiveDetailView: View {
 
         }
         .onAppear {
-            viewModel.onAppear(id: id, level: level, date: date)
+            viewModel.onAppear(level: level, date: date)
         }
     }
 }
