@@ -57,6 +57,9 @@ struct ArchiveListView: View {
             .padding(.bottom, 1)
 
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
         .padding(.horizontal, 20)
         .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .sheet(isPresented: self.$showModal) {

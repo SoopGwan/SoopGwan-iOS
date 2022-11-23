@@ -4,6 +4,8 @@ import Service
 final class ArchiveListViewModel: BaseViewModel {
     @Published var yearSelect: String = "2022년"
     @Published var monthSelect: String = "11월"
+    @Published var list: [ArchiveHabitEntity] = []
+
     @Published var selectList: ArchiveHabitEntity = .init(
         id: 0,
         startAt: "",
@@ -11,63 +13,16 @@ final class ArchiveListViewModel: BaseViewModel {
         level: 0
     )
 
-    @Published var list: [ArchiveHabitEntity] = [
-        .init(
-            id: 1,
-            startAt: "2022-11-14",
-            endAt: "2022-11-20",
-            level: 0
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-11-07",
-            endAt: "2022-11-13",
-            level: 1
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-10-31",
-            endAt: "2022-11-06",
-            level: 2
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-10-24",
-            endAt: "2022-10-30",
-            level: 3
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-10-17",
-            endAt: "2022-10-23",
-            level: 4
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-10-10",
-            endAt: "2022-10-16",
-            level: 4
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-10-03",
-            endAt: "2022-10-09",
-            level: 2
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-09-26",
-            endAt: "2022-10-02",
-            level: 1
-        ),
-        .init(
-            id: 1,
-            startAt: "2022-09-26",
-            endAt: "2022-09-19",
-            level: 3
-        )
+    private let remoteHabitDataSourceImpl = RemoteHabitDataSourceImpl()
 
-    ]
+    func onAppear() {
+        addCancellable(
+            remoteHabitDataSourceImpl
+                .fetchAllHabit()
+        ) { [weak self] weekHabitList in
+            self?.list = weekHabitList
+        }
+    }
 
     @Published var yearOptions = [
         DropdownOption(
