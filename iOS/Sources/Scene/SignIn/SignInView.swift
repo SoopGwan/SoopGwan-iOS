@@ -63,6 +63,13 @@ struct SignInView: View {
             to: IDAndPhoneNumBerView(),
             when: $viewModel.buttonPressed
         )
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    self.isToast = false
+                }
+            }
+        }
         .fullScreenCover(isPresented: $viewModel.isSuccessSignin) {
             TabbarView(
                 mainView: HomeView(),
