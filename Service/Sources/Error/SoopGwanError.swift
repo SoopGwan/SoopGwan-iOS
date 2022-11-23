@@ -4,6 +4,8 @@ public enum SoopGwanError: Error {
     // MARK: users
     case unknown
     case badRequest
+    case notPassword
+
     case unauthorized
     case userNotFound
     case notFound
@@ -31,6 +33,8 @@ extension SoopGwanError: LocalizedError {
             return "잠시 후 다시 시도하세요"
         case .userNotFound:
             return "계정을 찾을 수 없습니다."
+        case .notPassword:
+            return "비밀번호가 일치하지 않습니다."
         }
     }
 }

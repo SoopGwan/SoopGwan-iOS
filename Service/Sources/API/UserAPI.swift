@@ -26,7 +26,7 @@ extension UserAPI: SoopGwanAPI {
         case.sendAuthCode:
             return "/send"
         case let .checkAccountIDIsExist(accountID):
-            return "/check/\(accountID)"
+            return "/check"
         case .renewalPassword:
             return "/change"
         }
@@ -37,7 +37,7 @@ extension UserAPI: SoopGwanAPI {
         case .signin, .verifyAuthCode:
             return [
                 400: .badRequest,
-                401: .unauthorized,
+                401: .notPassword,
                 404: .userNotFound,
                 500: .serverError
             ]
@@ -66,7 +66,7 @@ extension UserAPI: SoopGwanAPI {
         case .signin, .signup, .verifyAuthCode, .sendAuthCode:
             return .post
         case .checkAccountIDIsExist:
-            return .options
+            return .head
         case .renewalPassword:
             return .patch
         }
@@ -85,6 +85,10 @@ extension UserAPI: SoopGwanAPI {
             return .requestCustomJSONEncodable(content, encoder: encoder)
         case let .sendAuthCode(content):
             return .requestCustomJSONEncodable(content, encoder: encoder)
+        case let .checkAccountIDIsExist(accountID):
+            return .requestParameters(parameters: [
+                "account_id": accountID
+            ], encoding: URLEncoding.queryString)
         case let .renewalPassword(content):
             return .requestCustomJSONEncodable(content, encoder: encoder)
         default:
