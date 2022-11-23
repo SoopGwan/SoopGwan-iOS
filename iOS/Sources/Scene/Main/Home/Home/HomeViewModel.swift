@@ -17,9 +17,10 @@ final class HomeViewModel: BaseViewModel {
                 .fetchHabitToWeek()
         ) { [weak self] weekHabitList in
             self?.habitList = weekHabitList
+            self?.totalHabitLevel = 0
             self?.habitList.forEach {
                 print($0)
-                self?.habitLevel += $0.habitCount
+                self?.totalHabitLevel += $0.habitCount
             }
             self?.makehabitLevel()
         }
@@ -39,15 +40,16 @@ final class HomeViewModel: BaseViewModel {
     }
 
     func makehabitLevel() {
+        // level을 나중에 실제 데이터일 경우 변경할 예정
         print("totalHabitLevel : \(totalHabitLevel)")
         if totalHabitLevel >= 0 && totalHabitLevel < 4 {
             habitLevel = 1
         } else if totalHabitLevel >= 5 && totalHabitLevel < 9 {
-            habitLevel = 1
-        } else if totalHabitLevel >= 10 && totalHabitLevel < 19 {
             habitLevel = 2
-        } else if totalHabitLevel >= 20 && totalHabitLevel < 34 {
+        } else if totalHabitLevel >= 10 && totalHabitLevel < 19 {
             habitLevel = 3
+        } else if totalHabitLevel >= 20 && totalHabitLevel < 34 {
+            habitLevel = 4
         } else if totalHabitLevel >= 35 {
             habitLevel = 4
         }
