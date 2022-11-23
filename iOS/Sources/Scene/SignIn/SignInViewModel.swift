@@ -2,11 +2,11 @@ import Combine
 import Service
 
 final class SignInViewModel: BaseViewModel {
-//    @Published var id = "test1234"
-//    @Published var password = "Test1234!"
+    @Published var id = "test1234"
+    @Published var password = "Test1234!"
 
-    @Published var id = ""
-    @Published var password = ""
+//    @Published var id = ""
+//    @Published var password = ""
 
     @Published var isOnAutoSignin = true
     @Published var isSuccessSignin = false
