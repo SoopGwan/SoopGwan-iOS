@@ -1,14 +1,7 @@
 import SwiftUI
 
 struct IDAndPhoneNumBerView: View {
-    @State var id: String = ""
-    @State var phoneNumber: String = ""
-    @State var buttonPressed: Bool = false
-
-    var isButtonEnabled: Bool {
-        !id.isEmpty && !phoneNumber.isEmpty
-    }
-
+    @StateObject var viewModel = IDAndPhoneNumBerViewModel()
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
@@ -27,21 +20,28 @@ struct IDAndPhoneNumBerView: View {
             }
             .padding(.bottom, 24)
 
-            AuthTextField("아이디", isSecret: false, text: $id)
+            AuthTextField("아이디", isSecret: false, text: $viewModel.id)
                 .padding(.bottom, 30)
 
-            AuthTextField("전화번호", isSecret: false, text: $phoneNumber)
+            AuthTextField("전화번호", isSecret: false, text: $viewModel.phoneNumber)
                 .keyboardType(.numberPad)
 
             Spacer()
             AuthButton(text: "다음") {
-                buttonPressed.toggle()
+                viewModel.nextButtonDidTap()
             }
-            .disabled(!isButtonEnabled)
+            .disabled(!viewModel.isNextEnabled)
         }
         .padding(.horizontal, 24)
         .hideKeyboard()
-        .navigate(to: AuthCodeView(id: id, phoneNumber: phoneNumber), when: $buttonPressed)
+        .soopGwanToast(isShowing: $viewModel.isShowingToast, message: "아이디가 중복되었어요.", style: .error)
+        .navigate(
+            to: AuthCodeView(
+                id: viewModel.id,
+                phoneNumber: viewModel.phoneNumber
+            ),
+            when: $viewModel.isSuccessNext
+        )
         .navigationBarTitleDisplayMode(.inline)
     }
 }
