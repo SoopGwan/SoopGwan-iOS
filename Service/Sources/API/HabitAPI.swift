@@ -6,7 +6,7 @@ public enum HabitAPI {
     case deleteHabit(id: Int)
     case fetchHabitToWeek
     case checkHabitIsSucceed(id: Int)
-    case fetchAllHabit
+    case fetchAllHabit(date: String)
     case checkHabitToWeek(req: CheckHabitToWeekRequestDTO)
     case fetchArchiveDetail(startAt: String, endAt: String)
 }
@@ -71,6 +71,10 @@ extension HabitAPI: SoopGwanAPI {
             return .requestJSONEncodable(content)
         case let .checkHabitToWeek(content):
             return .requestJSONEncodable(content)
+        case let .fetchAllHabit(date):
+            return .requestParameters(parameters: [
+                "date": date
+            ], encoding: URLEncoding.queryString)
         case let .fetchArchiveDetail(startAt, endAt):
             return .requestParameters(parameters: [
                 "start_at": startAt,

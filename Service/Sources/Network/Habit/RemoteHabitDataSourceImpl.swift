@@ -22,8 +22,8 @@ public final class RemoteHabitDataSourceImpl: BaseRemoteDataSource<HabitAPI>, Re
             .eraseToAnyPublisher()
     }
 
-    public func fetchAllHabit() -> AnyPublisher<[ArchiveHabitEntity], SoopGwanError> {
-        request(.fetchAllHabit, dto: FetchArchiveHabitResponseDTO.self)
+    public func fetchAllHabit(date: String) -> AnyPublisher<[ArchiveHabitEntity], SoopGwanError> {
+        request(.fetchAllHabit(date: date), dto: FetchArchiveHabitResponseDTO.self)
             .map { $0.toDomain() }
             .eraseToAnyPublisher()
     }

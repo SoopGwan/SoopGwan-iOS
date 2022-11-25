@@ -25,7 +25,7 @@ extension UserAPI: SoopGwanAPI {
             return "/verify"
         case.sendAuthCode:
             return "/send"
-        case let .checkAccountIDIsExist(accountID):
+        case .checkAccountIDIsExist:
             return "/check"
         case .renewalPassword:
             return "/change"
@@ -91,8 +91,6 @@ extension UserAPI: SoopGwanAPI {
             ], encoding: URLEncoding.queryString)
         case let .renewalPassword(content):
             return .requestCustomJSONEncodable(content, encoder: encoder)
-        default:
-            return .requestPlain
         }
     }
 
