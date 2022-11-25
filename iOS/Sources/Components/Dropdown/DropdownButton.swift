@@ -35,7 +35,7 @@ struct DropdownButton: View {
             VStack {
                 if self.shouldShowDropdown {
                     Spacer(minLength: buttonHeight + 5)
-                    Dropdown(options: self.options, onSelect: self.onSelect)
+                    dropdown()
                 }
             }, alignment: .topLeading
         )
@@ -43,4 +43,43 @@ struct DropdownButton: View {
             RoundedRectangle(cornerRadius: dropdownCornerRadius).fill(Color.white)
         )
     }
+
+    @ViewBuilder
+    func dropdown() -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(self.options, id: \.self) { option in
+                dropdownOptionElement(
+                    val: option.val,
+                    key: option.key
+                )
+            }
+        }
+        .background(Color.white)
+        .cornerRadius(dropdownCornerRadius)
+        .overlay(
+            RoundedRectangle(cornerRadius: dropdownCornerRadius)
+                .stroke(Color("3D8361"), lineWidth: 1)
+        )
+    }
+
+    @ViewBuilder
+    func dropdownOptionElement(val: String, key: String) -> some View {
+        ZStack {
+            Color.white
+
+            Button {
+                if let onSelect = self.onSelect {
+                    onSelect(key)
+                    self.shouldShowDropdown.toggle()
+                }
+            } label: {
+                Text(val)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(Color("3D8361"))
+            }
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 5)
+    }
+
 }
