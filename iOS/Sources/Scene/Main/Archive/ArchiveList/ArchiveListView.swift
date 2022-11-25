@@ -41,15 +41,8 @@ struct ArchiveListView: View {
                     displayText: $viewModel.yearSelect,
                     options: viewModel.yearOptions,
                     onSelect: { key in
-                        viewModel.yearSelect = key
-                    }
-                )
-
-                DropdownButton(
-                    displayText: $viewModel.monthSelect,
-                    options: viewModel.monthOptions,
-                    onSelect: { key in
-                        viewModel.monthSelect = key
+                        viewModel.yearSelect = "\(key)년"
+                        viewModel.yearSelectNumber = key
                     }
                 )
             }

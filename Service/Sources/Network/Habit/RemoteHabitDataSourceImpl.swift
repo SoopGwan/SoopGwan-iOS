@@ -32,4 +32,10 @@ public final class RemoteHabitDataSourceImpl: BaseRemoteDataSource<HabitAPI>, Re
         request(.checkHabitToWeek(req: req))
             .eraseToAnyPublisher()
     }
+
+    public func fetchArciveDetail(startAt: String, endAt: String) -> AnyPublisher<DetailHabitEntity, SoopGwanError> {
+        request(.fetchArchiveDetail(startAt: startAt, endAt: endAt), dto: FetchArchiveDetailResponseDTO.self)
+            .map { $0.toDomain() }
+            .eraseToAnyPublisher()
+    }
 }
