@@ -18,8 +18,7 @@ struct SoopGwanToast: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             content
-
-            dmsToastView()
+            soopGwanToastView()
         }
         .onChange(of: isShowing) { _ in
             if isShowing {
@@ -33,7 +32,7 @@ struct SoopGwanToast: ViewModifier {
     }
 
     @ViewBuilder
-    private func dmsToastView() -> some View {
+    private func soopGwanToastView() -> some View {
         VStack {
             if isShowing {
                 HStack(spacing: 10) {

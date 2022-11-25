@@ -1,5 +1,4 @@
 import SwiftUI
-import Service
 
 struct ArchiveListView: View {
     @StateObject var viewModel = ArchiveListViewModel()
@@ -17,7 +16,6 @@ struct ArchiveListView: View {
                 ) {
                     ForEach(viewModel.list, id: \.self) { list in
                         Button {
-                            print("\(list)")
                             viewModel.selectList = list
                             self.showModal = true
                         } label: {
@@ -43,6 +41,7 @@ struct ArchiveListView: View {
                     onSelect: { key in
                         viewModel.yearSelect = "\(key)년"
                         viewModel.yearSelectNumber = key
+                        viewModel.onAppear()
                     }
                 )
             }

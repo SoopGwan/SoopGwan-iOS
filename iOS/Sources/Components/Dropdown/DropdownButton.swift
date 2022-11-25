@@ -1,17 +1,20 @@
 import SwiftUI
 
 struct DropdownButton: View {
-    private let dropdownCornerRadius: CGFloat = 8.0
-
     @State var shouldShowDropdown = false
     @Binding var displayText: String
+
     var options: [DropdownOption]
     var onSelect: ((_ key: String) -> Void)?
 
-    let buttonHeight: CGFloat = 36
+    private let dropdownCornerRadius: CGFloat = 8.0
+    private let buttonHeight: CGFloat = 36
+
     var body: some View {
         Button {
-            self.shouldShowDropdown.toggle()
+            withAnimation {
+                self.shouldShowDropdown.toggle()
+            }
         } label: {
             HStack {
                 Text(displayText)
@@ -70,7 +73,9 @@ struct DropdownButton: View {
             Button {
                 if let onSelect = self.onSelect {
                     onSelect(key)
-                    self.shouldShowDropdown.toggle()
+                    withAnimation {
+                        self.shouldShowDropdown.toggle()
+                    }
                 }
             } label: {
                 Text(val)

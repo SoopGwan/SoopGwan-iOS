@@ -1,16 +1,21 @@
 import SwiftUI
 
 struct LevelProfileView: View {
+
     @Binding var level: Int
+
     var body: some View {
         ZStack {
             Color.white
+
             VStack(alignment: .center) {
                 Spacer()
                     .frame(height: 5)
+
                 Text(level.levelToTitle())
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(Color("3D8361"))
+                    .frame(height: 19)
 
                 Image(level.levelToImageName())
                     .resizable()
@@ -20,6 +25,7 @@ struct LevelProfileView: View {
                 Text(level.levelToContent())
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(.gray)
+                    .frame(height: 12)
             }
             .padding(.vertical, 20)
 

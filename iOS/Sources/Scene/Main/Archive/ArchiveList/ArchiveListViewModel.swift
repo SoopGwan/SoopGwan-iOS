@@ -1,5 +1,6 @@
 import Combine
 import Service
+import SwiftUI
 
 final class ArchiveListViewModel: BaseViewModel {
     @Published var yearSelect: String = "2022년"
@@ -11,17 +12,6 @@ final class ArchiveListViewModel: BaseViewModel {
         endAt: "",
         level: 0
     )
-
-    private let remoteHabitDataSourceImpl = RemoteHabitDataSourceImpl()
-
-    func onAppear() {
-        addCancellable(
-            remoteHabitDataSourceImpl
-                .fetchAllHabit()
-        ) { [weak self] weekHabitList in
-            self?.list = weekHabitList
-        }
-    }
 
     @Published var yearOptions = [
         DropdownOption(
@@ -36,4 +26,17 @@ final class ArchiveListViewModel: BaseViewModel {
             val: "2020년"
         )
     ]
+
+    private let remoteHabitDataSourceImpl = RemoteHabitDataSourceImpl()
+
+    func onAppear() {
+        addCancellable(
+            remoteHabitDataSourceImpl
+                .fetchAllHabit(date: "\(yearSelectNumber)-01-01")
+        ) { [weak self] weekHabitList in
+            withAnimation {
+                self?.list = weekHabitList
+            }
+        }
+    }
 }

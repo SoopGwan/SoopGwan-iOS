@@ -34,6 +34,7 @@ struct HomeView: View {
                     Spacer()
 
                     Button {
+                        viewModel.newHabitTitle = ""
                         viewModel.presentAlert.toggle()
                     } label: {
                         Image(systemName: "plus")
