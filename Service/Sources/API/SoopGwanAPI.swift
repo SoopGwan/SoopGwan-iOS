@@ -28,6 +28,7 @@ public extension SoopGwanAPI {
 public enum SoopGwanDomain: String {
     case users
     case habit
+    case achieve
 }
 
 extension SoopGwanDomain {
