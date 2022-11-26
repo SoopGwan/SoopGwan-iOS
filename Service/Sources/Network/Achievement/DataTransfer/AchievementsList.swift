@@ -10,7 +10,7 @@ extension MyAchieveListDTO {
     func toDomain() -> AchieveListEntity {
         AchieveListEntity(
             title: title,
-            imageName: rarityType + productType,
+            imageName: "\(rarityType)-\(productType)",
             content: content
         )
     }
