@@ -6,6 +6,14 @@ public struct FetchArchiveDetailResponseDTO: Codable {
 }
 
 public struct DetailHabitDTO: Codable, Hashable, Equatable {
-    let title: String
-    let count: Int
+    public let title: String
+    public let count: Int
+
+    public init(
+        title: String,
+        count: Int
+    ) {
+        self.title = title
+        self.count = count
+    }
 }

@@ -6,14 +6,17 @@ struct ArchiveDetailView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     private let level: Int
-    private let date: String
+    private let startAt: String
+    private let endAt: String
 
     init(
         level: Int,
-        date: String
+        startAt: String,
+        endAt: String
     ) {
         self.level = level
-        self.date = date
+        self.startAt = startAt
+        self.endAt = endAt
     }
 
     var body: some View {
@@ -27,7 +30,7 @@ struct ArchiveDetailView: View {
                 .padding(.horizontal, 30)
                 .padding(.bottom, 1)
 
-            Text(date)
+            Text("\(startAt) ~ \(endAt)")
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(Color("999999"))
                 .padding(.horizontal, 30)
@@ -67,15 +70,14 @@ struct ArchiveDetailView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Spacer()
-
-                    Text("습관 실천 평가 결과")
+                    Text(viewModel.status == 0 ? "여기를 눌러 습관 평가 결과를 입력해 주세요." : "습관 실천 평가 결과")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(Color("4A4A4A"))
 
                     Spacer()
                         .frame(height: 5)
 
-                    Text("기분이 좋아요!")
+                    Text(viewModel.statusDetailMessage)
                         .font(.system(size: 10, weight: .medium))
                         .foregroundColor(Color("999999"))
 
@@ -85,7 +87,7 @@ struct ArchiveDetailView: View {
 
                 Spacer()
 
-                Image("Emoji-1")
+                Image("Emoji-\(viewModel.status)")
                     .resizable()
                     .frame(width: 40, height: 40)
             }
@@ -106,7 +108,7 @@ struct ArchiveDetailView: View {
                 ForEach(viewModel.list, id: \.self) { list in
                     ArchiveDetailCellView(
                         title: list.title,
-                        content: list.content
+                        content: "습관을 \(list.count)번 실천했어요"
                     )
                     .padding(.horizontal, 30)
 
@@ -127,7 +129,7 @@ struct ArchiveDetailView: View {
 
         }
         .onAppear {
-            viewModel.onAppear(level: level, date: date)
+            viewModel.onAppear(level: level, startAt: startAt, endAt: endAt)
         }
     }
 }

@@ -57,7 +57,8 @@ struct ArchiveListView: View {
         .sheet(isPresented: self.$showModal) {
             ArchiveDetailView(
                 level: viewModel.selectList.level,
-                date: "\(viewModel.selectList.startAt) ~ \(viewModel.selectList.endAt)"
+                startAt: viewModel.selectList.startAt,
+                endAt: viewModel.selectList.endAt
             )
         }
     }

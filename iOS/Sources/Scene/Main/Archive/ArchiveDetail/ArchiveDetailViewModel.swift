@@ -7,21 +7,60 @@ final class ArchiveDetailViewModel: BaseViewModel {
     private let level: Int = 0
     private let date: String = ""
 
-    @Published var list: [ArciveDetailEntity] = [
-        .init(title: "일어나서 물 먹기", content: "습관을 실천하지 못했어요"),
-        .init(title: "잠 일찍 자기.", content: "습관을 2번 실천했어요"),
-        .init(title: "책 하루 10장 읽기.", content: "습관을 모두 실천했어요"),
-        .init(title: "10분간 명상하기.", content: "습관을 1번 실천했어요"),
-        .init(title: "숙제 밀리지 않기.", content: "습관을 모두 실천했어요"),
-        .init(title: "운동 30분 이상 하기.", content: "습관을 6번 실천했어요"),
-        .init(title: "기숙사 방 청소 하기.", content: "습관을 3번 실천했어요")
-    ]
-    @Published var detailMessage = """
-        일주일 동안 빠짐없이 실천한 습관 1개
-        한번도 실천하지 않은 습관 2개
-        화이팅입니다.
-        """
-    func onAppear(level: Int, date: String) {
+    @Published var list: [DetailHabitDTO] = []
+    @Published var detailMessage = ""
+    @Published var statusDetailMessage: String = ""
+    @Published var status: Int = 0
 
+    var allDoneCount: Int = 0
+    var notDoneCount: Int = 0
+
+    private let remoteHabitDataSourceImpl = RemoteHabitDataSourceImpl()
+    func onAppear(level: Int, startAt: String, endAt: String) {
+        self.allDoneCount = 0
+        self.notDoneCount =  0
+
+        addCancellable(
+            remoteHabitDataSourceImpl
+                .fetchArciveDetail(
+                    startAt: startAt,
+                    endAt: endAt
+                )
+        ) { [weak self] detail in
+            withAnimation {
+                detail.habits.forEach {
+                    if $0.count == 7 { self?.allDoneCount += 1 }
+                    if $0.count == 0 { self?.notDoneCount += 1 }
+                }
+
+                self?.detailMessage = """
+                    일주일 동안 빠짐없이 실천한 습관은 \(self?.allDoneCount ?? 0)개 입니다.
+                    습관 \(self?.notDoneCount ?? 0)개는 한번도 실천하지 않았습니다.
+                    일주일간 고생 많으셨습니다.
+                    화이팅입니다!
+                    """
+
+                self?.status = detail.status
+                self?.statusDetailMessage = self?.intToStatusDetailMessage(status: detail.status) ?? ""
+                self?.list = detail.habits
+            }
+        }
+    }
+
+    func intToStatusDetailMessage(status: Int) -> String {
+        switch status {
+        case 0:
+            return "여기를 눌러 습관을 평가해 주세요."
+        case 1:
+            return "기분이 좋아요!"
+        case 2:
+            return "놀라운 기분이에요!"
+        case 3:
+            return "분노가 차올라요"
+        case 4:
+            return "기분이 슬퍼요 ㅜ"
+        default:
+            return "뭔가 잘못되었어요"
+        }
     }
 }
