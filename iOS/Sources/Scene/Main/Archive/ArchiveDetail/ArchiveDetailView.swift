@@ -67,29 +67,33 @@ struct ArchiveDetailView: View {
             Spacer()
                 .frame(height: 20)
 
-            HStack {
-                VStack(alignment: .leading) {
-                    Spacer()
-                    Text(viewModel.status == 0 ? "여기를 눌러 습관 평가 결과를 입력해 주세요." : "습관 실천 평가 결과")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(Color("4A4A4A"))
+            Button {
+                viewModel.statusSheetPresented.toggle()
+            } label: {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Spacer()
+                        Text(viewModel.status == 0 ? "여기를 눌러 습관 평가 결과를 입력해 주세요." : "습관 실천 평가 결과")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(Color("4A4A4A"))
+
+                        Spacer()
+                            .frame(height: 5)
+
+                        Text(viewModel.statusDetailMessage)
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundColor(Color("999999"))
+
+                        Spacer()
+                    }
+                    .padding(.leading, 5)
 
                     Spacer()
-                        .frame(height: 5)
 
-                    Text(viewModel.statusDetailMessage)
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(Color("999999"))
-
-                    Spacer()
+                    Image("Emoji-\(viewModel.status)")
+                        .resizable()
+                        .frame(width: 40, height: 40)
                 }
-                .padding(.leading, 5)
-
-                Spacer()
-
-                Image("Emoji-\(viewModel.status)")
-                    .resizable()
-                    .frame(width: 40, height: 40)
             }
             .padding(.horizontal, 15)
             .frame(height: 70)
@@ -128,6 +132,11 @@ struct ArchiveDetailView: View {
             .padding(.horizontal, 24)
 
         }
+        .sheet(isPresented: $viewModel.statusSheetPresented) {
+            SelectStatusView(startAt: startAt, endAt: endAt)
+                .presentationDetents([.height(300)])
+        }
+
         .onAppear {
             viewModel.onAppear(level: level, startAt: startAt, endAt: endAt)
         }

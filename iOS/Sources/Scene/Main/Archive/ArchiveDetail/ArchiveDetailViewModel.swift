@@ -11,6 +11,7 @@ final class ArchiveDetailViewModel: BaseViewModel {
     @Published var detailMessage = ""
     @Published var statusDetailMessage: String = ""
     @Published var status: Int = 0
+    @Published var statusSheetPresented: Bool = false
 
     var allDoneCount: Int = 0
     var notDoneCount: Int = 0
