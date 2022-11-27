@@ -13,15 +13,18 @@ struct SettingView: View {
             ScrollView(.vertical) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Daehee님 반가워요!")
+                        Text("반가워요!")
                             .font(.system(size: 20, weight: .semibold))
-                        Text("오늘 습관을 2회 실천했어요.")
+
+                        Text("오늘은 어떤 하루를 보내고 계신가요?")
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.gray)
-                        Text("지금까지 업적을 4개 달성했어요.")
+
+                        Text("더 좋은 삶을 실기 위해 오늘도 힘내세요!")
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.gray)
                     }
+
                     Spacer()
                 }
                 .padding(.leading, 20)
@@ -32,19 +35,19 @@ struct SettingView: View {
                 }
 
                 SettingButton(title: "비밀번호 변경하기") {
-                    viewModel.isLChangePassword.toggle()
+                    viewModel.isChangePassword.toggle()
                 }
 
                 SettingButton(title: "오늘의 운세") {
-                    viewModel.isOtherView.toggle()
-                }
-
-                SettingButton(title: "오픈소스 라이센스") {
-                    viewModel.isOtherView.toggle()
+                    viewModel.isLuckView.toggle()
                 }
 
                 SettingButton(title: "개발자 소개") {
-                    viewModel.isOtherView.toggle()
+                    viewModel.isDeveloperView.toggle()
+                }
+
+                SettingButton(title: "개인정보 처리방침") {
+                    viewModel.isOpenSourceView.toggle()
                 }
 
                 SettingButton(title: "로그아웃", color: .red) {
@@ -56,8 +59,17 @@ struct SettingView: View {
         }
         .padding(.horizontal, 20)
         .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
-        .sheet(isPresented: $viewModel.isLChangePassword) {
+        .sheet(isPresented: $viewModel.isChangePassword) {
             PasswordView(id: "0", phoneNumber: "00")
+        }
+        .sheet(isPresented: $viewModel.isLuckView) {
+            SoopGwanWebView(urlToLoad: "https://www.donga.com/news/List/Culture/unse")
+        }
+        .sheet(isPresented: $viewModel.isDeveloperView) {
+            SoopGwanWebView(urlToLoad: "https://www.craft.do/s/1lKISvML9jQHlJ")
+        }
+        .sheet(isPresented: $viewModel.isOpenSourceView) {
+            SoopGwanWebView(urlToLoad: "https://www.craft.do/s/5HXVrGAgNcOQ31")
         }
         .fullScreenCover(
             isPresented: $viewModel.isLogOutButtonPressed) {
