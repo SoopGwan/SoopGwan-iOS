@@ -132,8 +132,19 @@ struct ArchiveDetailView: View {
             .padding(.horizontal, 24)
 
         }
+        .onChange(of: viewModel.statusSheetPresented) { _ in
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                viewModel.onAppear(level: level, startAt: startAt, endAt: endAt)
+            }
+        }
+
         .sheet(isPresented: $viewModel.statusSheetPresented) {
-            SelectStatusView(startAt: startAt, endAt: endAt, id: viewModel.id)
+            SelectStatusView(
+                isPresented: $viewModel.statusSheetPresented,
+                startAt: startAt,
+                endAt: endAt,
+                id: viewModel.id
+            )
                 .presentationDetents([.height(300)])
         }
         .onAppear {

@@ -2,21 +2,11 @@ import SwiftUI
 
 struct SelectStatusView: View {
     @StateObject var viewModel = SelectStatusViewModel()
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Binding var isPresented: Bool
 
     let startAt: String
     let endAt: String
     let id: Int
-
-    init(
-        startAt: String,
-        endAt: String,
-        id: Int
-    ) {
-        self.startAt = startAt
-        self.endAt = endAt
-        self.id = id
-    }
 
     var body: some View {
         VStack(alignment: .center) {
@@ -71,7 +61,7 @@ struct SelectStatusView: View {
 
             AuthButton(text: "완료") {
                 viewModel.doneButtonPressed(id: id, status: viewModel.selectedEmojiNumber)
-                self.presentationMode.wrappedValue.dismiss()
+                isPresented = false
             }
             .disabled(viewModel.isDoneEnabled)
             .padding(.bottom, 20)
