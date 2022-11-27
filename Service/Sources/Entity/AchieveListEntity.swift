@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AchieveListEntity: Equatable {
+public struct AchieveListEntity: Equatable, Hashable {
     public let title: String
     public let imageName: String
     public let content: String

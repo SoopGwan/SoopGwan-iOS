@@ -1,7 +1,22 @@
 import SwiftUI
 
 struct AchievementAlertView: View {
+    let title: String
+    let content: String
+    let imageName: String
     var action: () -> Void
+
+    init(
+        title: String,
+        content: String,
+        imageName: String,
+        action: @escaping () -> Void
+    ) {
+        self.title = title
+        self.content = content
+        self.imageName = imageName
+        self.action = action
+    }
 
     var body: some View {
         ZStack {
