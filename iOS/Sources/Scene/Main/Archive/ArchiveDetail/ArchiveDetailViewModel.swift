@@ -3,10 +3,10 @@ import Service
 import Combine
 
 final class ArchiveDetailViewModel: BaseViewModel {
-    private let id: Int = 0
     private let level: Int = 0
     private let date: String = ""
 
+    @Published var id: Int = 0
     @Published var list: [DetailHabitDTO] = []
     @Published var detailMessage = ""
     @Published var statusDetailMessage: String = ""
@@ -29,6 +29,8 @@ final class ArchiveDetailViewModel: BaseViewModel {
                 )
         ) { [weak self] detail in
             withAnimation {
+                self?.id = detail.id
+
                 detail.habits.forEach {
                     if $0.count == 7 { self?.allDoneCount += 1 }
                     if $0.count == 0 { self?.notDoneCount += 1 }
@@ -55,11 +57,11 @@ final class ArchiveDetailViewModel: BaseViewModel {
         case 1:
             return "기분이 좋아요!"
         case 2:
-            return "놀라운 기분이에요!"
-        case 3:
             return "분노가 차올라요"
-        case 4:
+        case 3:
             return "기분이 슬퍼요 ㅜ"
+        case 4:
+            return "놀라운 기분이에요!"
         default:
             return "뭔가 잘못되었어요"
         }

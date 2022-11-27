@@ -6,13 +6,16 @@ struct SelectStatusView: View {
 
     let startAt: String
     let endAt: String
+    let id: Int
 
     init(
         startAt: String,
-        endAt: String
+        endAt: String,
+        id: Int
     ) {
         self.startAt = startAt
         self.endAt = endAt
+        self.id = id
     }
 
     var body: some View {
@@ -67,10 +70,8 @@ struct SelectStatusView: View {
             Spacer()
 
             AuthButton(text: "완료") {
-                viewModel.doneButtonPressed(startAt: startAt, endAt: endAt)
-                if viewModel.dissmiss {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
+                viewModel.doneButtonPressed(id: id, status: viewModel.selectedEmojiNumber)
+                self.presentationMode.wrappedValue.dismiss()
             }
             .disabled(viewModel.isDoneEnabled)
             .padding(.bottom, 20)

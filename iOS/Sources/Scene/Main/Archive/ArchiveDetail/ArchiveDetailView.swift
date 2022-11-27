@@ -133,10 +133,9 @@ struct ArchiveDetailView: View {
 
         }
         .sheet(isPresented: $viewModel.statusSheetPresented) {
-            SelectStatusView(startAt: startAt, endAt: endAt)
+            SelectStatusView(startAt: startAt, endAt: endAt, id: viewModel.id)
                 .presentationDetents([.height(300)])
         }
-
         .onAppear {
             viewModel.onAppear(level: level, startAt: startAt, endAt: endAt)
         }

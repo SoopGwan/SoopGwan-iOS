@@ -46,11 +46,13 @@ final class SelectStatusViewModel: BaseViewModel {
 
     private let remoteHabitDataSourceImpl = RemoteHabitDataSourceImpl()
 
-    func doneButtonPressed(startAt: String, endAt: String) {
-        print("func doneButtonPressed(startAt: String, endAt: String)")
+    func doneButtonPressed(id: Int, status: Int) {
+        print(id, status)
         addCancellable(
             remoteHabitDataSourceImpl
-                .fetchArciveDetail(startAt: startAt, endAt: endAt)
+                .updateStatus(
+                    req: .init(id: id, status: status)
+                )
         ) { [weak self] _ in
             self?.dissmiss = true
         }

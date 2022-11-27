@@ -1,6 +1,11 @@
 import Combine
 
 public final class RemoteHabitDataSourceImpl: BaseRemoteDataSource<HabitAPI>, RemoteHabitDataSource {
+    public func updateStatus(req: UpdateStatusRequestDTO) -> AnyPublisher<Void, SoopGwanError> {
+        request(.updateStatus(req: req))
+            .eraseToAnyPublisher()
+    }
+
     public func createHabit(req: CreateHabitRequestDTO) -> AnyPublisher<Void, SoopGwanError> {
         request(.createHabit(req: req))
             .eraseToAnyPublisher()

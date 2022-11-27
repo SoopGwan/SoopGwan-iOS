@@ -2,7 +2,7 @@ import Foundation
 
 public struct FetchArchiveDetailResponseDTO: Codable {
     public let habits: [DetailHabitDTO]
-    public let status: Int
+    public let status, id: Int
 }
 
 public struct DetailHabitDTO: Codable, Hashable, Equatable {

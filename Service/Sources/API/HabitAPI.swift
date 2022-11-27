@@ -8,6 +8,7 @@ public enum HabitAPI {
     case checkHabitIsSucceed(id: Int)
     case fetchAllHabit(date: String)
     case checkHabitToWeek(req: CheckHabitToWeekRequestDTO)
+    case updateStatus(req: UpdateStatusRequestDTO)
     case fetchArchiveDetail(startAt: String, endAt: String)
 }
 
@@ -32,6 +33,8 @@ extension HabitAPI: SoopGwanAPI {
             return "/check"
         case .fetchArchiveDetail:
             return "/details"
+        case .updateStatus:
+            return "/week/check"
         }
     }
 
@@ -43,7 +46,7 @@ extension HabitAPI: SoopGwanAPI {
                 500: .serverError
             ]
 
-        case .deleteHabit, .checkHabitIsSucceed, .checkHabitToWeek:
+        case .deleteHabit, .checkHabitIsSucceed, .checkHabitToWeek, .updateStatus:
             return [
                 400: .badRequest,
                 404: .notFound,
@@ -54,7 +57,7 @@ extension HabitAPI: SoopGwanAPI {
 
     public var method: Moya.Method {
         switch self {
-        case .checkHabitToWeek, .checkHabitIsSucceed:
+        case .checkHabitToWeek, .checkHabitIsSucceed, .updateStatus:
             return .patch
         case .createHabit:
             return .post
@@ -67,6 +70,8 @@ extension HabitAPI: SoopGwanAPI {
 
     public var task: Moya.Task {
         switch self {
+        case let .updateStatus(req):
+            return .requestJSONEncodable(req)
         case let .createHabit(content):
             return .requestJSONEncodable(content)
         case let .checkHabitToWeek(content):

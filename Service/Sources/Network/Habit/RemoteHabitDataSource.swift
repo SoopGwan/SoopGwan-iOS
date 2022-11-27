@@ -7,6 +7,7 @@ public protocol RemoteHabitDataSource {
     func fetchHabitToWeek() -> AnyPublisher<[WeekHabitEntity], SoopGwanError>
     func checkHabitIsSucceed(id: Int) -> AnyPublisher<Void, SoopGwanError>
     func fetchAllHabit(date: String) -> AnyPublisher<[ArchiveHabitEntity], SoopGwanError>
+    func updateStatus(req: UpdateStatusRequestDTO) -> AnyPublisher<Void, SoopGwanError>
     func checkHabitToWeek(req: CheckHabitToWeekRequestDTO) -> AnyPublisher<Void, SoopGwanError>
     func fetchArciveDetail(startAt: String, endAt: String) -> AnyPublisher<DetailHabitEntity, SoopGwanError>
 }
