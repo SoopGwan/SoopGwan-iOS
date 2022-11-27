@@ -4,7 +4,7 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             Spacer()
                 .frame(height: 22)
 
@@ -77,11 +77,5 @@ struct HomeView: View {
         .onAppear {
             viewModel.onAppear()
         }
-    }
-}
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }

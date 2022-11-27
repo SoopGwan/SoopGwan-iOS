@@ -53,6 +53,7 @@ struct AchievementView: View {
                 }
             }
         }
+        .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
         .onAppear {
             viewModel.onAppear()
         }

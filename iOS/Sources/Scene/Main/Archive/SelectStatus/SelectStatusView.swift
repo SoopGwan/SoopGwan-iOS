@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SelectStatusView: View {
     @StateObject var viewModel = SelectStatusViewModel()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     let startAt: String
     let endAt: String
@@ -64,12 +65,18 @@ struct SelectStatusView: View {
             .padding(.horizontal, 30)
 
             Spacer()
+
             AuthButton(text: "완료") {
+                viewModel.doneButtonPressed(startAt: startAt, endAt: endAt)
+                if viewModel.dissmiss {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
             }
             .disabled(viewModel.isDoneEnabled)
             .padding(.bottom, 20)
             .padding(.horizontal, 24)
-
         }
+        .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
+
     }
 }
