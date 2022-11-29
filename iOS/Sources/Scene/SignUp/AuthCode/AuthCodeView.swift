@@ -50,7 +50,6 @@ struct AuthCodeView: View {
             }
             .disabled(!isButtonEnabled)
         }
-        .setBackbutton()
         .hideKeyboard()
         .navigate(
             to: PasswordView(

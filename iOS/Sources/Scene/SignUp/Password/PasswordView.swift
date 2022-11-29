@@ -34,11 +34,20 @@ struct PasswordView: View {
             .disabled(!viewModel.isSignUpEnabled)
         }
         .padding(.horizontal, 24)
-        .setBackbutton()
         .hideKeyboard()
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(isPresented: $viewModel.isSuccessSignup) {
-            SignInView(isToast: true)
+            if #available(iOS 16.0, *) {
+                NavigationStack {
+                    SignInView(isToast: true)
+                }
+                .accentColor(.black)
+            } else {
+                NavigationView {
+                    SignInView(isToast: true)
+                }
+                .accentColor(.black)
+            }
         }
         .soopGwanToast(isShowing: $viewModel.isErrorOcuured, message: viewModel.errorMessage, style: .error)
     }

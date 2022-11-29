@@ -15,6 +15,7 @@ final class PasswordViewModel: BaseViewModel {
     private let remoteUserDataSourceImpl = RemoteUserDataSourceImpl()
 
     func signUpButtonPressed(id: String, phoneNumber: String) {
+        print(phoneNumber, id, password)
         addCancellable(
             remoteUserDataSourceImpl.signup(
                 req: .init(
